@@ -7,12 +7,7 @@ public class Board : MonoBehaviour
     public static Board board => FindObjectOfType<Board>();
     public static bool PlayerTurn = true;
 
-    private Deck _playerDeck;
-    private Deck _enemyDeck;
-
     [SerializeField] private Player _player;
-
-    private List<Card> _burnedCards = new List<Card>();
 
     private List<Card> _cards = new List<Card>();
 

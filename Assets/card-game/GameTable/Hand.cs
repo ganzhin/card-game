@@ -11,8 +11,6 @@ public class Hand : MonoBehaviour
     [SerializeField] private float _handRadius = 0.05f;
 
     [SerializeField] private float _cardSpeed = 4;
-    [SerializeField] private float _handshake = 5;
-
 
     private void FixedUpdate()
     {
@@ -41,7 +39,6 @@ public class Hand : MonoBehaviour
             var zRotation = Mathf.Lerp(8, -8, (float)i / (float)Cards.Count);
             Cards[i].transform.localRotation = Quaternion.Lerp(Quaternion.Euler(0, 0, zRotation), Quaternion.Euler(-40, 0, zRotation), Cards[i].transform.localPosition.y / 0.06f);
         }
-        transform.localPosition += Mathf.Sin(Time.time) * Vector3.up * .00001f * _handshake;
     }
     
     public void AddCard(Card card)

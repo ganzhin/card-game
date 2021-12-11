@@ -12,7 +12,6 @@ public class CameraControls : MonoBehaviour
     [SerializeField] private float _sensetivity;
     [SerializeField] private float _speed;
     [SerializeField] private float _zoomSpeed;
-    [SerializeField] private float _headshake = 5;
 
     [SerializeField] private float _zoomFov = 45;
     [SerializeField] private float _doubleZoomFov = 35;
@@ -53,6 +52,5 @@ public class CameraControls : MonoBehaviour
         }
 
         Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, (Input.GetMouseButton(1) || !Board.PlayerTurn) ? _zoomFov : _defaultFov, Time.deltaTime * _zoomSpeed);
-        transform.localPosition += Mathf.Sin(Time.time) * Vector3.up * .00001f * _headshake;
     }
 }
