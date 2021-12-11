@@ -1,6 +1,18 @@
-﻿Параметр Z размера карт установлен равным 1.
+﻿fix: initial
+
+Параметр Z размера карт установлен равным 1.
 Shadow Depth Bias увеличен, для избежание джиттера текстур.
 Исправлен баг магазина, когда 10 карт в руке.
 Улучшено отображение карт в руке.
 Несущественные перестановки объектов на сцене.
 Уменьшено количество "магических чисел" в коде.
+
+The Z parameter of the playing card size is set to 1.
+Shadow Depth Bias increased to prevent texture jitter.
+Fixed a shop bug when there are 10 cards in hand.
+Improved display of cards in hand.
+Minor changes to objects on the main scene.
+Reduced the number of "magic numbers" in the code.
+
+###
+
