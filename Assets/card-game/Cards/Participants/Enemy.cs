@@ -35,7 +35,7 @@ public class Enemy : Participant
 
     public IEnumerator PlaceCards(int turnIndex)
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(Settings.EnemyTurnPause);
 
         var cardPlaces = new Vector3[_turnsVariants[turnIndex].Cards.Length];
         for (int i = 0; i < cardPlaces.Length; i++)
@@ -51,9 +51,9 @@ public class Enemy : Participant
 
             StartCoroutine(MoveCardToPosition(card, cardPlaces[i]));
 
-            yield return new WaitForSeconds(.25f);
+            yield return new WaitForSeconds(Settings.CardPause);
         }
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(Settings.EnemyTurnPause);
 
         _currentCards = _turnsVariants[turnIndex].Cards;
 
@@ -66,11 +66,11 @@ public class Enemy : Participant
 
         foreach (var card in _currentCards)
         {
-            yield return new WaitForSeconds(.25f);
+            yield return new WaitForSeconds(Settings.CardPause);
             card.Play();
         }
 
-        yield return new WaitForSeconds(1.1f);
+        yield return new WaitForSeconds(Settings.EnemyTurnPause);
 
         foreach (var card in _currentCards)
         {
@@ -79,7 +79,7 @@ public class Enemy : Participant
 
         _currentCards = null;
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(Settings.EnemyTurnPause);
 
         Board.EndTurn();
         

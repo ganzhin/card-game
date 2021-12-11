@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
@@ -15,7 +16,10 @@ public class CameraControls : MonoBehaviour
     [SerializeField] private float _headshake = 5;
 
     [SerializeField] private float _zoomFov = 45;
+    [SerializeField] private float _doubleZoomFov = 35;
     [SerializeField] private float _defaultFov = 60;
+
+    [SerializeField] private List<Collider> _zoomObjects;
 
     private float _angle = 50;
 
@@ -30,6 +34,15 @@ public class CameraControls : MonoBehaviour
             _yaw = Mathf.Clamp(_yaw, _yawMinimum, _yawMaximum);
             transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.Euler(_pitch, _yaw, 0), Time.fixedDeltaTime * _speed);
 
+            RaycastHit hit;
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit))
+            {
+                if (_zoomObjects.Contains(hit.collider))
+                {
+                    Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, _doubleZoomFov, Time.deltaTime * _zoomSpeed/2f);
+                    return;
+                }
+            }
         }
         else
         {
@@ -43,5 +56,4 @@ public class CameraControls : MonoBehaviour
         Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, (Input.GetMouseButton(1) || !Board.PlayerTurn) ? _zoomFov : _defaultFov, Time.deltaTime * _zoomSpeed);
         transform.localPosition += Mathf.Sin(Time.time) * Vector3.up * .00001f * _headshake;
     }
-
 }

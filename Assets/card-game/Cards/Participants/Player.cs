@@ -6,11 +6,12 @@ using UnityEngine.Diagnostics;
 public class Player : Participant
 {
     [SerializeField] private Card _cardTemplate;
+    private int _maxCardCount = 10;
 
-    private void Awake()
+    internal override void Awake()
     {
+        base.Awake();
         StarterDeck();
-        ChangeHealth(0);
     }
     private void Update()
     {
@@ -19,12 +20,10 @@ public class Player : Participant
             PlayCardsOnBoard();
         }
     }
-
     public void PlayCardsOnBoard()
     {
         Board.board.PlayCards();
     }
-
     private void StarterDeck()
     {
         for (int i = 2; i <= 4; i++)
@@ -63,7 +62,7 @@ public class Player : Participant
     {
         if (!Board.PlayerTurn) return;
 
-        if (_hand.Cards.Count < 10)
+        if (_hand.Cards.Count < _maxCardCount)
         {
             if (_takenCardsInThisTurn == 3) return;
 
@@ -91,7 +90,7 @@ public class Player : Participant
     {
         if (!Board.PlayerTurn) return;
 
-        if (_hand.Cards.Count < 10)
+        if (_hand.Cards.Count < _maxCardCount)
         {
             _takenCardsInThisTurn++;
             _hand.AddCard(card);
@@ -100,19 +99,17 @@ public class Player : Participant
                 cardShop.Cards[cardIndex].IsOnBoard = false;
                 cardShop.Cards[cardIndex] = null;
             }
-
+            if (_takenCardsInThisTurn == 2)
+            {
+                EndTurn();
+            }
         }
-        if (_takenCardsInThisTurn == 2)
-        {
-            EndTurn();
-        }
-
     }
     public IEnumerator TakeCardsByTime(int cardCount)
     {
         for (int i = 0; i < cardCount; i++)
         {
-            yield return new WaitForSeconds(.15f);
+            yield return new WaitForSeconds(Settings.CardPause);
             if (_deck.TakeCard(true) != null)
             {
                 _hand.AddCard(_deck.TakeCard());

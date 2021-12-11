@@ -15,23 +15,26 @@ public abstract class Participant : MonoBehaviour
 
     internal int _takenCardsInThisTurn = 0;
 
-    public virtual void ChangeHealth(int value)
+    internal virtual void Awake()
     {
-        if (value < 0)
+        TakeDamage(0);
+        AddArmor(0);
+    }
+
+    public virtual void TakeDamage(int value)
+    {
+        if (_armor > 0)
         {
-            if (_armor > 0)
+            _armor -= value;
+            if (_armor < 0)
             {
-                _armor += value;
-                if (_armor < 0)
-                {
-                    _health += _armor;
-                    _armor = 0;
-                }
+                _health -= Mathf.Abs(_armor);
+                _armor = 0;
             }
-            else
-            {
-                _health += value;
-            }
+        }
+        else
+        {
+            _health -= value;
         }
 
         _health = Mathf.Clamp(_health, 0, 20);
@@ -41,6 +44,12 @@ public abstract class Participant : MonoBehaviour
         _healthBar.SetValue(_health);
         _armorBar.SetValue(_armor);
     }
+    public virtual void Heal(int value)
+    {
+        _health += value;
+        _healthBar.SetValue(_health);
+    }
+
     public virtual void AddArmor(int value) 
     {
         _armor += value;

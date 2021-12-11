@@ -78,7 +78,7 @@ public class CardShop : MonoBehaviour
                 {
                     Cards[i] = FindObjectOfType<Deck>().TakeCard();
                     Cards[i].IsOnBoard = true;
-                    yield return new WaitForSeconds(.15f);
+                    yield return new WaitForSeconds(Settings.CardPause);
                 }
             }
         }

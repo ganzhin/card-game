@@ -7,6 +7,6 @@
 
     public override void Play(int value, Participant target)
     {
-        target.ChangeHealth(-value);
+        target.TakeDamage(value);
     }
 }

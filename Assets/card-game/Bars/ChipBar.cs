@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class ChipBar : Bar
 {
-    [SerializeField] private int _value;
     [SerializeField] private TextMesh _text;
 
     private Transform[] _valueTransforms;
@@ -18,13 +17,14 @@ public class ChipBar : Bar
         {
             _valueTransforms[i] = transform.GetChild(i);
             _valuePositions[i] = _valueTransforms[i].position;
+            _valueTransforms[i].position += Vector3.up;
         }
 
     }
 
     void LateUpdate()
     {
-        if (_value < _valueTransforms.Length && _value >= 0)
+        if (_value <= _valueTransforms.Length && _value >= 0)
         {
             for (int i = 0; i < _valueTransforms.Length; i++)
             {

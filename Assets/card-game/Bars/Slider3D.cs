@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class Slider3D : Bar
 {
-    [SerializeField] private float _value;
     [SerializeField] private float _maxValue;
 
     [SerializeField] private TextMesh _text;

@@ -14,7 +14,7 @@ public class PotionsEffect : CardEffect
         {
             if (participant != target)
             {
-                participant.ChangeHealth(value);
+                participant.Heal(value);
             }
         }
     }

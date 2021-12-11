@@ -26,6 +26,20 @@ public class Card : MonoBehaviour
     [SerializeField] private Material _transparentMaterial;
     private List<Material> _cardMaterials = new List<Material>();
 
+    private void OnMouseDown()
+    {
+        if (!Board.PlayerTurn) return;
+        if (IsOnBoard)
+        {
+            if (FindObjectOfType<Hand>().Cards.Count < 10)
+                RemoveFromBoard();
+        }
+        else
+        {
+            AddOnBoard();
+        }
+    }
+
     public void Initialize(int value, Suit suit, Deck ownerDeck)
     {
         _value = value;
@@ -85,27 +99,6 @@ public class Card : MonoBehaviour
     {
         IsOnBoard = false;
         Board.board.RemoveCard(this);
-    }
-
-    void OnMouseDown()
-    {
-        if (!Board.PlayerTurn) return;
-        if (IsOnBoard)
-        {
-            RemoveFromBoard();
-        }
-        else
-        {
-            AddOnBoard();
-        }
-    }
-
-    private void Update()
-    {
-        if (!IsOnBoard && !IsBurned && !IsDropped && (!OwnerDeck || transform.parent != OwnerDeck.transform))
-        {
-            transform.localRotation = Quaternion.Lerp(Quaternion.Euler(0, 0, 0), Quaternion.Euler(-40, 0, 0), transform.localPosition.y / 0.06f);
-        }
     }
 
     public void Burn()

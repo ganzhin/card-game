@@ -23,6 +23,7 @@ public class Board : MonoBehaviour
     [SerializeField] private int _maxEnergy = 9;
     [SerializeField] private int _currentEnergyPrice;
     [SerializeField] private Bar _priceMeter;
+
     private void Update()
     {
         for (int i = 0; i < _cards.Count; i++)
@@ -50,7 +51,7 @@ public class Board : MonoBehaviour
         foreach (var card in _cards)
         {
             card.Play();
-            yield return new WaitForSeconds(.25f);
+            yield return new WaitForSeconds(Settings.CardPause);
         }
 
         _cards.Clear();
