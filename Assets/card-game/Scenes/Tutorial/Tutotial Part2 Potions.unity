@@ -780,6 +780,63 @@ MonoBehaviour:
   _armor: 0
   _cardTemplate: {fileID: 9184198111616542153, guid: e840a61bf0f2c99499d981d8741c1045, type: 3}
   _game: 0
+--- !u!1001 &809823177
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4820256808694580259, guid: edf3a005078136e4cb1bafb62daf1d96, type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 4820256808694580259, guid: edf3a005078136e4cb1bafb62daf1d96, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.052750856
+      objectReference: {fileID: 0}
+    - target: {fileID: 4820256808694580259, guid: edf3a005078136e4cb1bafb62daf1d96, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.89534295
+      objectReference: {fileID: 0}
+    - target: {fileID: 4820256808694580259, guid: edf3a005078136e4cb1bafb62daf1d96, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.043711632
+      objectReference: {fileID: 0}
+    - target: {fileID: 4820256808694580259, guid: edf3a005078136e4cb1bafb62daf1d96, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4820256808694580259, guid: edf3a005078136e4cb1bafb62daf1d96, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4820256808694580259, guid: edf3a005078136e4cb1bafb62daf1d96, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4820256808694580259, guid: edf3a005078136e4cb1bafb62daf1d96, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4820256808694580259, guid: edf3a005078136e4cb1bafb62daf1d96, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4820256808694580259, guid: edf3a005078136e4cb1bafb62daf1d96, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4820256808694580259, guid: edf3a005078136e4cb1bafb62daf1d96, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8240450338002843623, guid: edf3a005078136e4cb1bafb62daf1d96, type: 3}
+      propertyPath: m_Name
+      value: SoundTrack
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: edf3a005078136e4cb1bafb62daf1d96, type: 3}
 --- !u!4 &931608399 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8309590517453145018, guid: 39f9e702940b5c541b3467c61930c9be, type: 3}
@@ -1603,6 +1660,7 @@ MonoBehaviour:
         m_CallState: 2
   _cutScene: 0
   _cameraZoom: 27
+  _voiceClip: {fileID: 8300000, guid: 79be50bd75493cc43ac2f0f83e43357e, type: 3}
 --- !u!114 &1325733664
 MonoBehaviour:
   m_ObjectHideFlags: 0

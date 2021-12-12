@@ -26,6 +26,9 @@ public class Card : MonoBehaviour
     [SerializeField] private Material _transparentMaterial;
     private List<Material> _cardMaterials = new List<Material>();
 
+    [SerializeField] private AudioClip _cardFluff;
+    [SerializeField] private AudioClip _cardPlay;
+
     private void OnMouseDown()
     {
         if (!Board.PlayerTurn) return;
@@ -38,6 +41,11 @@ public class Card : MonoBehaviour
         {
             AddOnBoard();
         }
+    }
+
+    private void OnMouseEnter()
+    {
+        SoundDesign.SoundOneShot(_cardFluff, transform);
     }
 
     public void Initialize(int value, Suit suit, Deck ownerDeck)
@@ -147,5 +155,10 @@ public class Card : MonoBehaviour
         }
         IsDropped = true;
     }
+ 
+    public void Save()
+    { 
     
+    }
+
 }

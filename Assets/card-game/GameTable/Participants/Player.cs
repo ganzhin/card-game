@@ -132,7 +132,6 @@ public class Player : Participant
             yield return new WaitForSeconds(Settings.CardPause);
         }
     }
-
     public void LoadDeck()
     {
         //TEMP

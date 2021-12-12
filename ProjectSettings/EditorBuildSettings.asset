@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/card-game/Scenes/Menu/MainMenu.unity
+    guid: 38e9843b7823630479a94bd451e9f8a1
+  - enabled: 1
     path: Assets/card-game/Scenes/Tutorial/Tutotial Part1 Knives.unity
     guid: 141d02c32f634374b89c1a4234329169
   - enabled: 1

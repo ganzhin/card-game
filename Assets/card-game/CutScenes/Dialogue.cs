@@ -19,6 +19,8 @@ public class Dialogue : MonoBehaviour
     private Quaternion _cameraLockRotation;
     [SerializeField] private float _cameraZoom = 27;
 
+    [SerializeField] private AudioClip _voiceClip;
+
     private void Start()
     {
         NextString();
@@ -59,12 +61,17 @@ public class Dialogue : MonoBehaviour
         yield return new WaitForSeconds(.2f);
 
         foreach (var letter in text)
-        { 
+        {
             timer = 0;
 
             _textObject.text += letter;
 
-            while (timer < _delay)
+            if (letter != ' ')
+            {
+                SoundDesign.SoundOneShot(_voiceClip);
+            }
+
+            while (timer < (char.IsPunctuation(letter) ? _delay * 3 : _delay))
             {
                 timer += Time.unscaledDeltaTime;
 
