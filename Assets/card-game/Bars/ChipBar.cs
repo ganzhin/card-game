@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Rendering;
 
 public class ChipBar : Bar
 {
@@ -43,6 +44,9 @@ public class ChipBar : Bar
     public override void SetValue(int value)
     {
         _value = value;
-        _text.text = value.ToString();
+        if (_text)
+        {
+            _text.text = $"{value}";
+        }
     }
 }

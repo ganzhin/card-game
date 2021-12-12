@@ -8,10 +8,15 @@ public class Player : Participant
     [SerializeField] private Card _cardTemplate;
     private int _maxCardCount = 10;
 
+    [SerializeField] private bool _game;
+
     internal override void Awake()
     {
         base.Awake();
-        StarterDeck();
+        if (_game)
+        {
+            LoadDeck();
+        }
     }
     private void Update()
     {
@@ -26,14 +31,22 @@ public class Player : Participant
     }
     private void StarterDeck()
     {
-        for (int i = 2; i <= 4; i++)
-        {
-            InstantiateCardInDeck(i, Suit.branches);
-            InstantiateCardInDeck(i, Suit.knives);
-            InstantiateCardInDeck(i, Suit.potions);
-            InstantiateCardInDeck(i, Suit.shields);
-            InstantiateCardInDeck((int)Random.Range(11, 14), (Suit)Random.Range(0, 4));
-        }
+        /* TEMP */
+        for (int j = 0; j < 3; j++)
+            for (int i = 2; i <= 4; i++)
+            {
+                InstantiateCardInDeck(i, Suit.branches);
+                InstantiateCardInDeck(i, Suit.knives);
+
+                /* TEMP */
+                if (j == 0)
+                {
+                    InstantiateCardInDeck(i, Suit.potions);
+                }
+
+                InstantiateCardInDeck(i, Suit.shields);
+                //InstantiateCardInDeck((int)Random.Range(11, 14), (Suit)Random.Range(0, 4));
+            }
         _deck.Shuffle();
         for (int i = 0; i < 6; i++)
         {
@@ -51,7 +64,7 @@ public class Player : Participant
 
         _hand.Cards.Remove(card);
     }
-    private void InstantiateCardInDeck(int value, Suit suit)
+    public void InstantiateCardInDeck(int value, Suit suit)
     {
         var card = Instantiate(_cardTemplate);
         card.Initialize(value, suit, _deck);
@@ -75,7 +88,7 @@ public class Player : Participant
                         _takenCardsInThisTurn++;
                     }
                 }
-                StartCoroutine(TakeCardsByTime(_takenCardsInThisTurn-1));
+                StartCoroutine(TakeCardsByTime(_takenCardsInThisTurn - 1));
 
                 EndTurn();
             }
@@ -109,12 +122,19 @@ public class Player : Participant
     {
         for (int i = 0; i < cardCount; i++)
         {
-            yield return new WaitForSeconds(Settings.CardPause);
             if (_deck.TakeCard(true) != null)
             {
                 _hand.AddCard(_deck.TakeCard());
             }
+            yield return new WaitForSeconds(Settings.CardPause);
         }
     }
 
+    public void LoadDeck()
+    {
+        //TEMP
+        //{
+        StarterDeck();
+        //}
+    }
 }

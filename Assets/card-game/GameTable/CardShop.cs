@@ -6,6 +6,7 @@ public class CardShop : MonoBehaviour
 {
     public Card[] Cards = new Card[5];
     [SerializeField] private Transform[] _places = new Transform[5];
+    [SerializeField] private float _cardSpeed = 3;
 
     private void Start()
     {
@@ -18,8 +19,8 @@ public class CardShop : MonoBehaviour
         {
             if (Cards[i] != null)
             {
-                Cards[i].transform.position = Vector3.Lerp(Cards[i].transform.position, _places[i].transform.position, Time.fixedDeltaTime);
-                Cards[i].transform.rotation = Quaternion.Lerp(Cards[i].transform.rotation, _places[i].transform.rotation, Time.fixedDeltaTime);
+                Cards[i].transform.position = Vector3.Lerp(Cards[i].transform.position, _places[i].transform.position, Time.fixedDeltaTime * _cardSpeed);
+                Cards[i].transform.rotation = Quaternion.Lerp(Cards[i].transform.rotation, _places[i].transform.rotation, Time.fixedDeltaTime * _cardSpeed);
             }
         }
 

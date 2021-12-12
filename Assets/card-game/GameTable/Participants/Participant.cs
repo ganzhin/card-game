@@ -7,7 +7,8 @@ public abstract class Participant : MonoBehaviour
     [SerializeField] internal Deck _deck;
     internal Board _board;
 
-    [SerializeField] internal int _health = 20;
+    [SerializeField] internal int _health;
+    [SerializeField] internal int _maxHealth = 12;
     [SerializeField] internal bool _isDead;
     [SerializeField] internal Bar _healthBar;
     [SerializeField] internal Bar _armorBar;
@@ -37,7 +38,7 @@ public abstract class Participant : MonoBehaviour
             _health -= value;
         }
 
-        _health = Mathf.Clamp(_health, 0, 20);
+        _health = Mathf.Clamp(_health, 0, _maxHealth);
 
         if (_health < 1) _isDead = true;
 
@@ -47,6 +48,7 @@ public abstract class Participant : MonoBehaviour
     public virtual void Heal(int value)
     {
         _health += value;
+        _health = Mathf.Clamp(_health, 0, _maxHealth);
         _healthBar.SetValue(_health);
     }
 

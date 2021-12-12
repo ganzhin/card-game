@@ -66,8 +66,8 @@ public class Enemy : Participant
 
         foreach (var card in _currentCards)
         {
-            yield return new WaitForSeconds(Settings.CardPause);
             card.Play();
+            yield return new WaitForSeconds(Settings.CardPause);
         }
 
         yield return new WaitForSeconds(Settings.EnemyTurnPause);

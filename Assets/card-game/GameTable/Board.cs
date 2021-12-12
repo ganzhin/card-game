@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class Board : MonoBehaviour
 {
+    public List<Card> Cards = new List<Card>();
+
     public static Board board => FindObjectOfType<Board>();
     public static bool PlayerTurn = true;
 
     [SerializeField] private Player _player;
-
-    private List<Card> _cards = new List<Card>();
-
     [SerializeField] private Transform[] places;
 
     [SerializeField] private int _maxEnergy = 9;
@@ -19,12 +18,12 @@ public class Board : MonoBehaviour
 
     private void Update()
     {
-        for (int i = 0; i < _cards.Count; i++)
+        for (int i = 0; i < Cards.Count; i++)
         {
-            if (_cards[i] != null)
+            if (Cards[i] != null)
             {
-                _cards[i].transform.position = Vector3.Lerp(_cards[i].transform.position, places[i].transform.position, Time.fixedDeltaTime * 4);
-                _cards[i].transform.rotation = Quaternion.Lerp(_cards[i].transform.rotation, places[i].transform.rotation, Time.fixedDeltaTime * 4);
+                Cards[i].transform.position = Vector3.Lerp(Cards[i].transform.position, places[i].transform.position, Time.fixedDeltaTime * 4);
+                Cards[i].transform.rotation = Quaternion.Lerp(Cards[i].transform.rotation, places[i].transform.rotation, Time.fixedDeltaTime * 4);
             }
         }
 
@@ -41,13 +40,13 @@ public class Board : MonoBehaviour
 
     private IEnumerator PlayCardsRoutine()
     {
-        foreach (var card in _cards)
+        foreach (var card in Cards)
         {
             card.Play();
             yield return new WaitForSeconds(Settings.CardPause);
         }
 
-        _cards.Clear();
+        Cards.Clear();
         ChangeCurrentPrice(-_currentEnergyPrice);
 
         EndTurn();
@@ -61,14 +60,14 @@ public class Board : MonoBehaviour
 
     public void PlaceCard(Card card)
     {
-        if (_cards.Count > 4)
+        if (Cards.Count > 4)
         {
             Debug.Log("На столе 5 карт");
             return;
         }
         card.transform.parent = null;
 
-        _cards.Add(card);
+        Cards.Add(card);
         _player.RemoveFromHand(card);
         card.IsOnBoard = true;
         card.PlaceEffect();
@@ -76,10 +75,10 @@ public class Board : MonoBehaviour
 
     public void RemoveCard(Card card)
     {
-        if (!_cards.Contains(card)) return;
+        if (!Cards.Contains(card)) return;
 
         _player.AddInHand(card);
-        _cards.Remove(card);
+        Cards.Remove(card);
         card.IsOnBoard = false;
         card.RemoveEffect();
     }
