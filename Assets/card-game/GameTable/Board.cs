@@ -32,6 +32,7 @@ public class Board : MonoBehaviour
 
     public void PlayCards()
     {
+        if (Cards.Count == 0) return;
         if (_currentEnergyPrice > _maxEnergy) return;
 
         StartCoroutine(PlayCardsRoutine());

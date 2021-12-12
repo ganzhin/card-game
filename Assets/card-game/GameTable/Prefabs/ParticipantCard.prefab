@@ -855,7 +855,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7815857103851678803}
-  m_Text: Elisabeth
+  m_Text: Player
   m_OffsetZ: 0
   m_CharacterSize: 0.01
   m_LineSpacing: 1

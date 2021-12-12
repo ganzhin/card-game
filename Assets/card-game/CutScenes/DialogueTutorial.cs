@@ -57,7 +57,7 @@ public class DialogueTutorial : MonoBehaviour
 
     public void NextScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneLoader.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         Board.PlayerTurn = true;
     }
 }

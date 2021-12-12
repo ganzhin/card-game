@@ -32,10 +32,11 @@ public class Player : Participant
     private void StarterDeck()
     {
         /* TEMP */
-        for (int j = 0; j < 3; j++)
+        for (int j = 2; j < 4; j++)
+        {
+            InstantiateCardInDeck(j, Suit.branches);
             for (int i = 2; i <= 4; i++)
             {
-                InstantiateCardInDeck(i, Suit.branches);
                 InstantiateCardInDeck(i, Suit.knives);
 
                 /* TEMP */
@@ -47,6 +48,7 @@ public class Player : Participant
                 InstantiateCardInDeck(i, Suit.shields);
                 //InstantiateCardInDeck((int)Random.Range(11, 14), (Suit)Random.Range(0, 4));
             }
+        }
         _deck.Shuffle();
         for (int i = 0; i < 6; i++)
         {
@@ -69,6 +71,7 @@ public class Player : Participant
         var card = Instantiate(_cardTemplate);
         card.Initialize(value, suit, _deck);
         card.name = $"{value} of {suit}";
+        card.transform.parent = _deck.transform;
         _deck.AddCard(card);
     }
     public void TakeCardFromDeck()

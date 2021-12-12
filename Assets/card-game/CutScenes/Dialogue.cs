@@ -26,7 +26,7 @@ public class Dialogue : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButton(0) && _isShowing == false)
+        if ((Input.GetMouseButton(0) || Input.GetKeyDown(KeyCode.Space)) && _isShowing == false)
         {
             NextString();
         }
@@ -54,9 +54,9 @@ public class Dialogue : MonoBehaviour
     {
         _isShowing = true;
 
-        yield return new WaitForSeconds(.2f);
         float timer = 0;
         _textObject.text = string.Empty;
+        yield return new WaitForSeconds(.2f);
 
         foreach (var letter in text)
         { 

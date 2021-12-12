@@ -55,6 +55,7 @@ public abstract class Participant : MonoBehaviour
     public virtual void AddArmor(int value) 
     {
         _armor += value;
+        _armor = Mathf.Clamp(_armor, 0, 20);
         _armorBar.SetValue(_armor);
     }
     public virtual void EndTurn()
