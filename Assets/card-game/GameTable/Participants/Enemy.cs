@@ -14,8 +14,9 @@ public class Enemy : Participant
 
     [SerializeField] private Text _clickToContinueText;
 
-    private void Start()
+    internal override void Start()
     {
+        base.Start();
         foreach (var turn in _turnsVariants)
         {
             for (int i = 0; i < turn.Cards.Length; i++)
@@ -98,6 +99,11 @@ public class Enemy : Participant
             yield return null;
         }
         card.UnBurn();
+    }
+
+    public override void Death()
+    {
+        Board.board.Win();
     }
 }
 

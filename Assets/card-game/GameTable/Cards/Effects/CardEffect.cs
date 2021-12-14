@@ -29,10 +29,10 @@ public abstract class CardEffect
         var timer = 0f;
         Vector3 cardPosition = card.transform.position;
         
-        while (timer < 1)
+        while (timer < Settings.LongCardPause)
         {
             timer += Time.deltaTime;
-            if (timer <= .5f)
+            if (timer <= Settings.LongCardPause / 2f)
             {
                 cardPosition += card.transform.up * (-4 * (timer * timer) + 4 * timer) * 0.001f;
             }

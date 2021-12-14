@@ -17,7 +17,7 @@ RenderSettings:
   m_Fog: 1
   m_FogColor: {r: 0, g: 0, b: 0, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.2
+  m_FogDensity: 0.4
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
@@ -267,7 +267,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.06300002, y: 0.008436671, z: 0.08900002}
+  m_Size: {x: 0.07760864, y: 0.01039299, z: 0.10963758}
   m_Center: {x: 0, y: -0.0005, z: 0}
 --- !u!4 &211270256 stripped
 Transform:
@@ -805,7 +805,6 @@ MonoBehaviour:
   _deck: {fileID: 1334173701}
   _health: 16
   _maxHealth: 16
-  _isDead: 0
   _healthBar: {fileID: 1728282053}
   _armorBar: {fileID: 1165947299}
   _armor: 0

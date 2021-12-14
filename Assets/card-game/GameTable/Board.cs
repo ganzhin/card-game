@@ -1,13 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Build.Player;
 using UnityEngine;
 
 public class Board : MonoBehaviour
 {
     public List<Card> Cards = new List<Card>();
-
     public static Board board => FindObjectOfType<Board>();
-    public static bool PlayerTurn = true;
+    public bool PlayerTurn = true;
 
     [SerializeField] private Player _player;
     [SerializeField] private Transform[] places;
@@ -15,6 +15,16 @@ public class Board : MonoBehaviour
     [SerializeField] private int _maxEnergy = 9;
     [SerializeField] private int _currentEnergyPrice;
     [SerializeField] private Bar _priceMeter;
+
+    [SerializeField] private bool _victory;
+    [SerializeField] private bool _loose;
+
+    private void Start()
+    {
+        PlayerTurn = true;
+        _loose = false;
+        _victory = false;
+    }
 
     private void Update()
     {
@@ -43,13 +53,17 @@ public class Board : MonoBehaviour
     {
         foreach (var card in Cards)
         {
+            card.GetComponent<Collider>().enabled = false;
+        }
+
+        foreach (var card in Cards)
+        {
             card.Play();
             yield return new WaitForSeconds(Settings.CardPause);
         }
 
         Cards.Clear();
         ChangeCurrentPrice(-_currentEnergyPrice);
-
         EndTurn();
     }
 
@@ -86,15 +100,20 @@ public class Board : MonoBehaviour
 
     public static void EndTurn()
     {
-        PlayerTurn = !PlayerTurn;
+        board.PlayerTurn = !board.PlayerTurn;
         FindObjectOfType<Player>()._takenCardsInThisTurn = 0;
 
-        if (PlayerTurn == false)
+        if (board.PlayerTurn == false)
         {
             FindObjectOfType<Enemy>().MakeMoves();
         }
 
         FindObjectOfType<CardShop>().PlaceCards();
+        
+        if (board._loose || board._victory)
+        {
+            board.EndGame();
+        }
     }
 
     public void EndGame()
@@ -103,6 +122,24 @@ public class Board : MonoBehaviour
         {
             deck.RestoreBurnedCards();
         }
+        if (_loose)
+        {
+            SceneLoader.LoadScene(0);
+        }
+        else if (_victory)
+        {
+            SceneLoader.LoadScene("MapScene");
+        }
+        PlayerTurn = false;
+        _loose = false;
+        _victory = false;
     }
-
+    public void Lose()
+    {
+        _loose = true;
+    }
+    public void Win()
+    {
+        _victory = true;
+    }
 }

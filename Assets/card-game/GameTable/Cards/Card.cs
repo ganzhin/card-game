@@ -31,7 +31,7 @@ public class Card : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (!Board.PlayerTurn) return;
+        if (!Board.board.PlayerTurn) return;
         if (IsOnBoard)
         {
             if (FindObjectOfType<Hand>().Cards.Count < 10)
@@ -78,7 +78,7 @@ public class Card : MonoBehaviour
     public void Play()
     {
         _cardEffect.Play(this, _value);
-        if (Board.PlayerTurn)
+        if (Board.board.PlayerTurn)
         {
             _cardEffect.Play(_value, FindObjectOfType<Enemy>());
         }
@@ -129,7 +129,7 @@ public class Card : MonoBehaviour
         {
             timer += Time.deltaTime;
             _faceRenderer.material.SetFloat("_value", timer);
-            if (timer > 1f)
+            if (timer > .8f)
             {
                 transform.localPosition = Vector3.Lerp(transform.localPosition, transform.localPosition + Vector3.down * .01f, Time.deltaTime);
             }

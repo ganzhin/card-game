@@ -22,7 +22,7 @@ public class Deck : MonoBehaviour
 
     [SerializeField] private DeckVisual _deckVisual = new DeckVisual();
 
-    private void Awake()
+    private void Start()
     {
         _topCardPosition = _topCard.localPosition;
     }

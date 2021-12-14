@@ -10,9 +10,9 @@ public class Player : Participant
 
     [SerializeField] private bool _game;
 
-    internal override void Awake()
+    internal override void Start()
     {
-        base.Awake();
+        base.Start();
         if (_game)
         {
             LoadDeck();
@@ -20,7 +20,7 @@ public class Player : Participant
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && Board.PlayerTurn)
+        if (Input.GetKeyDown(KeyCode.Space) && Board.board.PlayerTurn)
         {
             PlayCardsOnBoard();
         }
@@ -31,23 +31,14 @@ public class Player : Participant
     }
     private void StarterDeck()
     {
-        /* TEMP */
-        for (int j = 2; j < 4; j++)
+        for (int j = 2; j <= 4; j++)
         {
             InstantiateCardInDeck(j, Suit.branches);
-            for (int i = 2; i <= 4; i++)
-            {
-                InstantiateCardInDeck(i, Suit.knives);
+            InstantiateCardInDeck(j, Suit.shields);
+            InstantiateCardInDeck(j, Suit.potions);
+            InstantiateCardInDeck(j, Suit.knives);
+            InstantiateCardInDeck(j, Suit.knives);
 
-                /* TEMP */
-                if (j == 0)
-                {
-                    InstantiateCardInDeck(i, Suit.potions);
-                }
-
-                InstantiateCardInDeck(i, Suit.shields);
-                //InstantiateCardInDeck((int)Random.Range(11, 14), (Suit)Random.Range(0, 4));
-            }
         }
         _deck.Shuffle();
         for (int i = 0; i < 6; i++)
@@ -59,6 +50,8 @@ public class Player : Participant
     public void AddInHand(Card card)
     {
         _hand.AddCard(card);
+        card.GetComponent<Collider>().enabled = true;
+
     }
     public void RemoveFromHand(Card card)
     {
@@ -76,7 +69,7 @@ public class Player : Participant
     }
     public void TakeCardFromDeck()
     {
-        if (!Board.PlayerTurn) return;
+        if (!Board.board.PlayerTurn) return;
 
         if (_hand.Cards.Count < _maxCardCount)
         {
@@ -104,12 +97,12 @@ public class Player : Participant
     }
     public void TakeCardFromShop(Card card, CardShop cardShop = null, int cardIndex = 0)
     {
-        if (!Board.PlayerTurn) return;
+        if (!Board.board.PlayerTurn) return;
 
         if (_hand.Cards.Count < _maxCardCount)
         {
             _takenCardsInThisTurn++;
-            _hand.AddCard(card);
+            AddInHand(card);
             if (cardShop)
             {
                 cardShop.Cards[cardIndex].IsOnBoard = false;
@@ -127,16 +120,17 @@ public class Player : Participant
         {
             if (_deck.TakeCard(true) != null)
             {
-                _hand.AddCard(_deck.TakeCard());
+                AddInHand(_deck.TakeCard());
             }
             yield return new WaitForSeconds(Settings.CardPause);
         }
     }
     public void LoadDeck()
     {
-        //TEMP
-        //{
         StarterDeck();
-        //}
+    }
+    public override void Death()
+    {
+        Board.board.Lose();
     }
 }

@@ -10,7 +10,7 @@ public class SoundDesign : MonoBehaviour
             singleton = this;
             DontDestroyOnLoad(gameObject);
         }
-        else
+        else if (singleton != this)
         {
             Destroy(this);
         }
@@ -23,6 +23,8 @@ public class SoundDesign : MonoBehaviour
 
     public static void SetMusic(AudioClip clip)
     {
+        if (!singleton) return;
+
         if (singleton._musicSource.clip != clip)
         {
             if (clip == null)
@@ -41,6 +43,8 @@ public class SoundDesign : MonoBehaviour
 
     public static void SetAmbient(AudioClip clip)
     {
+        if (!singleton) return;
+
         if (singleton._ambientSource.clip != clip)
         {
             singleton._ambientSource.clip = clip;
@@ -50,6 +54,8 @@ public class SoundDesign : MonoBehaviour
 
     public static void SoundOneShot(AudioClip clip, Transform soundTransform = null)
     {
+        if (!singleton) return;
+
         if (soundTransform)
         {
             singleton._stereoSoundSource.transform.position = soundTransform.position;

@@ -6,10 +6,11 @@ using UnityEngine.UI;
 
 public class Dialogue : MonoBehaviour
 {
+    public UnityEvent[] _unityEvents;
+
     [SerializeField] private List<string> _strings = new List<string>();
     [SerializeField] private Text _textObject;
     private float _delay = .05f;
-    [SerializeField] private UnityEvent[] _unityEvents;
 
     private bool _isShowing;
     private int _currentStringIndex = -1;
@@ -45,6 +46,7 @@ public class Dialogue : MonoBehaviour
         if (_currentStringIndex == _strings.Count - 1)
         {
             gameObject.SetActive(false);
+            _textObject.text = "";
             return;
         }
 
@@ -75,7 +77,7 @@ public class Dialogue : MonoBehaviour
             {
                 timer += Time.unscaledDeltaTime;
 
-                if (Input.GetMouseButton(0) || Input.GetKeyDown(KeyCode.Space))
+                if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
                 {
                     _textObject.text = text;
                     goto br;

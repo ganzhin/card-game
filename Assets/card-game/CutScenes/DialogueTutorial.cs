@@ -11,7 +11,7 @@ public class DialogueTutorial : MonoBehaviour
     [SerializeField] private Suit _optionalSuit1;
     [SerializeField] private Suit _optionalSuit2;
 
-    private void Awake()
+    private void Start()
     {
         if (!_noCards)
         {
@@ -49,7 +49,7 @@ public class DialogueTutorial : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (Board.PlayerTurn == false)
+        if (Board.board.PlayerTurn == false)
         {
             NextScene();
         }
@@ -58,7 +58,7 @@ public class DialogueTutorial : MonoBehaviour
     public void NextScene()
     {
         SceneLoader.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        Board.PlayerTurn = true;
+        Board.board.PlayerTurn = true;
     }
 }
 

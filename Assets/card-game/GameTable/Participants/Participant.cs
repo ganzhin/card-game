@@ -9,14 +9,13 @@ public abstract class Participant : MonoBehaviour
 
     [SerializeField] internal int _health;
     [SerializeField] internal int _maxHealth = 12;
-    [SerializeField] internal bool _isDead;
     [SerializeField] internal Bar _healthBar;
     [SerializeField] internal Bar _armorBar;
     [SerializeField] internal int _armor;
 
     internal int _takenCardsInThisTurn = 0;
 
-    internal virtual void Awake()
+    internal virtual void Start()
     {
         TakeDamage(0);
         AddArmor(0);
@@ -40,7 +39,7 @@ public abstract class Participant : MonoBehaviour
 
         _health = Mathf.Clamp(_health, 0, _maxHealth);
 
-        if (_health < 1) _isDead = true;
+        if (_health < 1) Death();
 
         _healthBar.SetValue(_health);
         _armorBar.SetValue(_armor);
@@ -51,7 +50,6 @@ public abstract class Participant : MonoBehaviour
         _health = Mathf.Clamp(_health, 0, _maxHealth);
         _healthBar.SetValue(_health);
     }
-
     public virtual void AddArmor(int value) 
     {
         _armor += value;
@@ -63,4 +61,6 @@ public abstract class Participant : MonoBehaviour
         _takenCardsInThisTurn = 0;
         Board.EndTurn();
     }
+
+    public abstract void Death();
 }

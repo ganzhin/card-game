@@ -33,7 +33,7 @@ public class CardShop : MonoBehaviour
 
     private void TakeCard()
     {
-        if (Board.PlayerTurn == false) return;
+        if (Board.board.PlayerTurn == false) return;
 
         Card card;
 
@@ -77,6 +77,8 @@ public class CardShop : MonoBehaviour
                 {
                     Cards[i] = FindObjectOfType<Deck>().TakeCard();
                     Cards[i].IsOnBoard = true;
+                    Cards[i].GetComponent<Collider>().enabled = true;
+
                     yield return new WaitForSeconds(Settings.CardPause);
                 }
             }

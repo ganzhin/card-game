@@ -44,13 +44,13 @@ public class CameraControls : MonoBehaviour
         }
         else
         {
-            _angle = Board.PlayerTurn ? 50 : 43;
+            _angle = (!Board.board || Board.board.PlayerTurn) ? 50 : 43;
 
             transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.Euler(_angle, 0, 0), Time.fixedDeltaTime * _speed);
             _pitch = Mathf.Lerp(_pitch, 50, Time.deltaTime);
             _yaw = Mathf.Lerp(_yaw, 0, Time.deltaTime);
         }
 
-        Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, (Input.GetMouseButton(1) || !Board.PlayerTurn) ? _zoomFov : _defaultFov, Time.deltaTime * _zoomSpeed);
+        Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, (Input.GetMouseButton(1) || (Board.board && !Board.board.PlayerTurn)) ? _zoomFov : _defaultFov, Time.deltaTime * _zoomSpeed);
     }
 }
