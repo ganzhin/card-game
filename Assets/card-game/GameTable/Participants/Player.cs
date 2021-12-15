@@ -1,5 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Xml;
+using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.Diagnostics;
 
@@ -40,7 +43,10 @@ public class Player : Participant
             InstantiateCardInDeck(j, Suit.knives);
 
         }
+        SaveDeck();
+
         _deck.Shuffle();
+
         for (int i = 0; i < 6; i++)
         {
             TakeCardFromDeck();
@@ -127,7 +133,35 @@ public class Player : Participant
     }
     public void LoadDeck()
     {
-        StarterDeck();
+        if (File.Exists($"{Application.dataPath}/Save/deck.xml"))
+        {
+            var serializer = new XmlSerializer(typeof(DeckData));
+            var stream = new FileStream($"{Application.dataPath}/Save/deck.xml", FileMode.Open);
+
+            DeckData loadedDeckData = serializer.Deserialize(stream) as DeckData;
+            stream.Close();
+
+            for (int i = 0; i < loadedDeckData.Values.Count; i++)
+            {
+                InstantiateCardInDeck(loadedDeckData.Values[i], (Suit)loadedDeckData.Suits[i]);
+            }
+
+            _deck.Shuffle();
+
+            for (int i = 0; i < 6; i++)
+            {
+                TakeCardFromDeck();
+                _takenCardsInThisTurn = 0;
+            }
+        }
+        else
+        {
+            StarterDeck();
+        }
+    }
+    public void SaveDeck()
+    {
+        var data = new DeckData(_deck);
     }
     public override void Death()
     {

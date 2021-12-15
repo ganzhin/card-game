@@ -155,10 +155,13 @@ public class Card : MonoBehaviour
         }
         IsDropped = true;
     }
- 
-    public void Save()
-    { 
-    
-    }
 
+    public int GetValue()
+    {
+        return _value;
+    }
+    public int GetSuit()
+    {
+        return (int)_suit;
+    }
 }

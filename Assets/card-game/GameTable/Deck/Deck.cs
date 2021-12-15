@@ -145,4 +145,16 @@ public class Deck : MonoBehaviour
             return null;
         }
     }
+
+    public List<Card> GetAllCards()
+    {
+        List<Card> allCards = new List<Card>();
+
+        allCards.AddRange(_cards);
+        allCards.AddRange(_burned);
+        allCards.AddRange(_draw);
+        allCards.AddRange(FindObjectOfType<Hand>().Cards);
+
+        return allCards;
+    }
 }

@@ -128,7 +128,7 @@ public class Board : MonoBehaviour
         }
         else if (_victory)
         {
-            SceneLoader.LoadScene("MapScene");
+            SceneLoader.LoadScene("PickCard");
         }
         PlayerTurn = false;
         _loose = false;

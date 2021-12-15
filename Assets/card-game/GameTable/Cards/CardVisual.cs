@@ -23,6 +23,7 @@ public class CardVisual : MonoBehaviour
     private void Start()
     {
         _audioSource = GetComponent<AudioSource>();
+        Refresh();
     }
 
     private void OnMouseEnter()
