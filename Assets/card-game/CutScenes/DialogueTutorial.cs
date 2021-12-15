@@ -11,6 +11,8 @@ public class DialogueTutorial : MonoBehaviour
     [SerializeField] private Suit _optionalSuit1;
     [SerializeField] private Suit _optionalSuit2;
 
+    private bool _canBeLoaded = true;
+
     private void Start()
     {
         if (!_noCards)
@@ -57,8 +59,26 @@ public class DialogueTutorial : MonoBehaviour
 
     public void NextScene()
     {
-        SceneLoader.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        if (SceneManager.GetActiveScene().buildIndex == 5 && Settings.Data.OnlyTutorial)
+        {
+            if (_canBeLoaded)
+            {
+                SceneLoader.LoadScene(0);
+                Settings.Data.OnlyTutorial = false;
+                _canBeLoaded = false;
+                this.enabled = false;
+            }
+        }
+        else
+        {
+            if (_canBeLoaded)
+            {
+                SceneLoader.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            }
+        }
         Board.board.PlayerTurn = true;
+        Settings.Data.FirstTutorialPassed = true;
+        Settings.SaveSettings();
     }
 }
 

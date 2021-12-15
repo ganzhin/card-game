@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Linq.Expressions;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -16,7 +17,7 @@ public static class SceneLoader
             TransitionImage = Object.FindObjectOfType<SceneTransitionImage>();
             if (TransitionImage)
             {
-                Object.FindObjectOfType<MonoBehaviour>().StartCoroutine(LoadSceneRoutine(buildIndex));
+                Object.FindObjectOfType<SceneTransitionImage>().StartCoroutine(LoadSceneRoutine(buildIndex));
             }
         }
     }
@@ -28,13 +29,14 @@ public static class SceneLoader
             TransitionImage = Object.FindObjectOfType<SceneTransitionImage>();
             if (TransitionImage)
             {
-                Object.FindObjectOfType<MonoBehaviour>().StartCoroutine(LoadSceneRoutine(null, sceneName));
+                Object.FindObjectOfType<SceneTransitionImage>().StartCoroutine(LoadSceneRoutine(null, sceneName));
             }
         }
     }
 
     private static IEnumerator LoadSceneRoutine(int? buildIndex = null, string sceneName = null)
     {
+        Object.DontDestroyOnLoad(TransitionImage.gameObject.transform.parent.gameObject);
         _isPlaying = true;
         float time = 0;
         while (time < _transitionTime)
@@ -53,7 +55,6 @@ public static class SceneLoader
         }
 
         _isPlaying = false;
-        TransitionImage = Object.FindObjectOfType<SceneTransitionImage>();
 
         while (time > 0)
         {
@@ -61,5 +62,6 @@ public static class SceneLoader
             TransitionImage.color = Color.Lerp(Color.clear, Color.black, time / _transitionTime);
             yield return null;
         }
+        Object.Destroy(TransitionImage.gameObject.transform.parent.gameObject);
     }
 }

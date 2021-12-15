@@ -3,9 +3,22 @@ using UnityEngine;
 
 public class MainMenu : MonoBehaviour
 {
+    private void Start()
+    {
+        Settings.LoadSettings();
+    }
     public void NewGame()
     {
-        SceneLoader.LoadScene(1);
+        if (Settings.Data.FirstTutorialPassed)
+        {
+            SceneLoader.LoadScene("MapScene");
+
+        }
+        else
+        {
+            SceneLoader.LoadScene(1);
+
+        }
         if (File.Exists($"{Application.dataPath}/Save/deck.xml"))
         {
             File.Delete($"{Application.dataPath}/Save/deck.xml");
@@ -17,7 +30,13 @@ public class MainMenu : MonoBehaviour
 
     }
 
-    public void Settings()
+    public void Tutorial()
+    {
+        Settings.Data.OnlyTutorial = true;
+        SceneLoader.LoadScene(1);
+    }
+
+    public void OpenSettings()
     {
 
     }
