@@ -13,6 +13,8 @@ public abstract class Participant : MonoBehaviour
     [SerializeField] internal Bar _armorBar;
     [SerializeField] internal int _armor;
 
+    [SerializeField] internal bool _keepArmor = false; 
+
     internal int _takenCardsInThisTurn = 0;
 
     internal virtual void Start()
@@ -60,6 +62,14 @@ public abstract class Participant : MonoBehaviour
     {
         _takenCardsInThisTurn = 0;
         Board.EndTurn();
+    }
+    public virtual void ClearArmor()
+    {
+        if (!_keepArmor)
+        {
+            _armor = 0;
+            _armorBar.SetValue(0);
+        }
     }
 
     public abstract void Death();

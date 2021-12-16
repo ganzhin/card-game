@@ -15,11 +15,15 @@ public class Player : Participant
 
     internal override void Start()
     {
+        _health = ChipMoney.Health;
+        _maxHealth = ChipMoney.MaxHealth;
+
         base.Start();
         if (_game)
         {
             LoadDeck();
         }
+        
     }
     private void Update()
     {
@@ -34,13 +38,15 @@ public class Player : Participant
     }
     private void StarterDeck()
     {
-        for (int j = 2; j <= 4; j++)
+        InstantiateCardInDeck(2, Suit.potions);
+        InstantiateCardInDeck(3, Suit.potions);
+        
+        for (int i = 2; i <= 4; i++)
         {
-            InstantiateCardInDeck(j, Suit.branches);
-            InstantiateCardInDeck(j, Suit.shields);
-            InstantiateCardInDeck(j, Suit.potions);
-            InstantiateCardInDeck(j, Suit.knives);
-            InstantiateCardInDeck(j, Suit.knives);
+            InstantiateCardInDeck(i, Suit.branches);
+            InstantiateCardInDeck(i, Suit.shields);
+            InstantiateCardInDeck(i, Suit.knives);
+            InstantiateCardInDeck(i, Suit.knives);
 
         }
         SaveDeck();

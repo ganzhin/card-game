@@ -10,7 +10,7 @@ public class Dialogue : MonoBehaviour
 
     [SerializeField] private List<string> _strings = new List<string>();
     [SerializeField] private Text _textObject;
-    private float _delay = .05f;
+    private float _delay = .04f;
 
     private bool _isShowing;
     private int _currentStringIndex = -1;
@@ -52,6 +52,14 @@ public class Dialogue : MonoBehaviour
 
         _currentStringIndex++;
         StartCoroutine(ShowTextRoutine(_strings[_currentStringIndex]));
+    }
+
+    public void ShowString(string text)
+    {
+        _strings.Clear();
+        _strings.Add(text);
+        _currentStringIndex = -1;
+        NextString();
     }
 
     public IEnumerator ShowTextRoutine(string text)
@@ -98,5 +106,11 @@ public class Dialogue : MonoBehaviour
 
         camera.rotation = Quaternion.Lerp(camera.rotation, Quaternion.LookRotation(relativePos, Vector3.up), Time.deltaTime * 2);
         Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, _cameraZoom, Time.deltaTime);
+    }
+
+    public void SetStrings(string[] strings)
+    {
+        _strings.Clear();
+        _strings.AddRange(strings);
     }
 }

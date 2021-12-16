@@ -7,8 +7,6 @@ using UnityEngine.UI;
 
 public class LocationCard : MonoBehaviour
 {
-    [SerializeField] private TextMesh _cardText;
-    [SerializeField] private TextMesh _locationText;
     [SerializeField] private bool _quest;
     [SerializeField] private Dialogue _dialogue;
     [SerializeField] private SceneAsset _sceneToLoad;
@@ -22,11 +20,19 @@ public class LocationCard : MonoBehaviour
 
     private bool _opened;
 
-    public void Initialize(bool quest, SceneAsset scene)
+    [Header("Visual References")]
+    [SerializeField] private Renderer _cardRenderer;
+    [SerializeField] private TextMesh _cardText;
+    [SerializeField] private TextMesh _locationText;
+    [SerializeField] private Texture[] _cardFaces;
+
+    public void Initialize(LocationType type, bool success, SceneAsset scene)
     {
-        _quest = quest;
+        _cardRenderer.material.mainTexture = _cardFaces[(int)type];
+
+        _quest = success;
         _sceneToLoad = scene;
-        _locationText.text = _sceneToLoad.name;
+        _locationText.text = type.ToString().ToLower();
 
         _cardText.text = _quest ? "?" : "X";
 
@@ -37,7 +43,7 @@ public class LocationCard : MonoBehaviour
     private void Update()
     {
         Vector3 lift = _startPosition + Vector3.up * (_isHighlighted ? _cardLift : 0);
-        Quaternion angle = Quaternion.Euler(_startRotation.x - _cardLiftYAngle * (_isHighlighted ? 1 : 0), _startRotation.y + _cardLiftYAngle * (_isHighlighted ? 1 : 0), 0);
+        Quaternion angle = Quaternion.Euler(_startRotation.x - (_cardLiftYAngle * (_isHighlighted ? 1 : 0)), _startRotation.y + (_cardLiftYAngle * (_isHighlighted ? 1 : 0)), _startRotation.z);
 
         if (_opened)
         {

@@ -12,7 +12,7 @@ public class PickCard : MonoBehaviour
     {
         foreach (var card in _cards)
         {
-            card.Initialize(Random.Range(2, 6), (Suit)Random.Range(0, 4), null);
+            card.Initialize(Random.Range(2, 7), (Suit)Random.Range(0, 4), null);
         }
     }
 

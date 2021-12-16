@@ -31,6 +31,7 @@ public class Card : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (!Board.board) return;
         if (!Board.board.PlayerTurn) return;
         if (IsOnBoard)
         {

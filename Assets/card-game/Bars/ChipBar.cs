@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.Rendering;
 
 public class ChipBar : Bar
 {
@@ -21,7 +20,6 @@ public class ChipBar : Bar
         }
 
     }
-
     void LateUpdate()
     {
         if (_value <= _valueTransforms.Length && _value >= 0)
@@ -40,7 +38,6 @@ public class ChipBar : Bar
             }
         }
     }
-    
     public override void SetValue(int value)
     {
         _value = value;
@@ -49,4 +46,13 @@ public class ChipBar : Bar
             _text.text = $"{value}";
         }
     }
+    public int GetCapacity()
+    {
+        return _valueTransforms.Length;
+    }
+    public int GetValue()
+    {
+        return _value;
+    }
+
 }

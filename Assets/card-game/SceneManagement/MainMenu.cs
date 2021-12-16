@@ -12,7 +12,7 @@ public class MainMenu : MonoBehaviour
         if (Settings.Data.FirstTutorialPassed)
         {
             SceneLoader.LoadScene("MapScene");
-
+            ChipMoney.Clear();
         }
         else
         {

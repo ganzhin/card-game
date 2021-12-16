@@ -51,7 +51,7 @@ public class DialogueTutorial : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (Board.board.PlayerTurn == false)
+        if (Board.board && Board.board.PlayerTurn == false)
         {
             NextScene();
         }

@@ -2,6 +2,7 @@
 <DeckData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Values>
     <int>2</int>
+    <int>3</int>
     <int>2</int>
     <int>2</int>
     <int>2</int>
@@ -10,27 +11,24 @@
     <int>3</int>
     <int>3</int>
     <int>3</int>
-    <int>3</int>
-    <int>4</int>
     <int>4</int>
     <int>4</int>
     <int>4</int>
     <int>4</int>
   </Values>
   <Suits>
+    <int>2</int>
+    <int>2</int>
     <int>0</int>
     <int>3</int>
-    <int>2</int>
-    <int>1</int>
-    <int>1</int>
-    <int>0</int>
-    <int>3</int>
-    <int>2</int>
     <int>1</int>
     <int>1</int>
     <int>0</int>
     <int>3</int>
-    <int>2</int>
+    <int>1</int>
+    <int>1</int>
+    <int>0</int>
+    <int>3</int>
     <int>1</int>
     <int>1</int>
   </Suits>

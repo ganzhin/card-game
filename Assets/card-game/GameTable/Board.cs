@@ -64,7 +64,11 @@ public class Board : MonoBehaviour
 
         Cards.Clear();
         ChangeCurrentPrice(-_currentEnergyPrice);
+
+        yield return new WaitForSeconds(Settings.LongCardPause);
+
         EndTurn();
+
     }
 
     public static void ChangeCurrentPrice(int value)
@@ -106,6 +110,11 @@ public class Board : MonoBehaviour
         if (board.PlayerTurn == false)
         {
             FindObjectOfType<Enemy>().MakeMoves();
+            FindObjectOfType<Enemy>().ClearArmor();
+        }
+        else
+        {
+            FindObjectOfType<Player>().ClearArmor();
         }
 
         FindObjectOfType<CardShop>().PlaceCards();

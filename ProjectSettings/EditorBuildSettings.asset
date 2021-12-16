@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/card-game/Scenes/PickCard.unity
     guid: 23937ef5baf939d4086b30d4a39ab99a
+  - enabled: 1
+    path: Assets/card-game/Scenes/QuestionMarks/QuestionMark.unity
+    guid: 472273092b298dc408fb93f9b5c4cca5
   m_configObjects: {}

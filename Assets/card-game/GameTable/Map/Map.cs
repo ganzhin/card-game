@@ -7,12 +7,36 @@ public class Map : MonoBehaviour
 
     [SerializeField] private SceneAsset[] _scenes;
 
+    [SerializeField] private int _successPercent;
+    [SerializeField] private TextMesh _floorText;
+
+    [SerializeField] private Bar _playerHealth;
+    [SerializeField] private TextMesh _playerHealthText;
+
     private void Start()
     {
+        ChipMoney.Load();
         foreach (var card in _locationCards)
         {
-            card.Initialize(Random.Range(0, 101) < 66, _scenes[Random.Range(0, _scenes.Length)]);
-            
+            int random = Random.Range(0, 101);
+
+            LocationType locationType = (LocationType)Random.Range(0, System.Enum.GetNames(typeof(LocationType)).Length);
+            bool success = random <= _successPercent;
+            SceneAsset scene = success ? _scenes[(int)locationType] : _scenes[0];
+
+            if (locationType == LocationType.Battle) success = false;
+
+            card.Initialize(locationType, success, scene);
+
         }
+
+        UpdateBar();
+    }
+
+    public void UpdateBar()
+    {
+        _floorText.text = $"Floor {ChipMoney.Floor}";
+        _playerHealth.SetValue(ChipMoney.Health);
+        _playerHealthText.text = $"{ChipMoney.Health} / {ChipMoney.MaxHealth}";
     }
 }
