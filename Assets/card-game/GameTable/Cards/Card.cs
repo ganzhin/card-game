@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -76,9 +77,14 @@ public class Card : MonoBehaviour
         }
     }
 
+    internal void AfterPlay()
+    {
+        _cardEffect.AfterPlay();
+    }
+
     public void Play()
     {
-        _cardEffect.Play(this, _value);
+        _cardEffect.Play(_value);
         if (Board.board.PlayerTurn)
         {
             _cardEffect.Play(_value, FindObjectOfType<Enemy>());
@@ -119,6 +125,11 @@ public class Card : MonoBehaviour
             IsBurned = true;
         }
 
+        if (Board.board.Cards.Contains(this))
+        {
+            Board.board.Cards.Remove(this);
+        }
+
         _faceRenderer.material = _burnMaterial;
         StartCoroutine(BurnByTime());
     }
@@ -137,6 +148,10 @@ public class Card : MonoBehaviour
             yield return null;
         }
         transform.position = Vector3.down;
+        if (Board.board.Cards.Contains(this))
+        {
+            Board.board.Cards.Remove(this);
+        }
     }
 
     public void UnBurn()
@@ -155,6 +170,10 @@ public class Card : MonoBehaviour
             OwnerDeck.DropCard(this);
         }
         IsDropped = true;
+        if (Board.board.Cards.Contains(this))
+        {
+            Board.board.Cards.Remove(this);
+        }
     }
 
     public int GetValue()

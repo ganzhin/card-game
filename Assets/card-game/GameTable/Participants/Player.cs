@@ -38,15 +38,15 @@ public class Player : Participant
     }
     private void StarterDeck()
     {
-        InstantiateCardInDeck(2, Suit.potions);
-        InstantiateCardInDeck(3, Suit.potions);
+        InstantiateCardInDeck(2, Suit.Potions);
+        InstantiateCardInDeck(3, Suit.Potions);
         
         for (int i = 2; i <= 4; i++)
         {
-            InstantiateCardInDeck(i, Suit.branches);
-            InstantiateCardInDeck(i, Suit.shields);
-            InstantiateCardInDeck(i, Suit.knives);
-            InstantiateCardInDeck(i, Suit.knives);
+            InstantiateCardInDeck(i, Suit.Branches);
+            InstantiateCardInDeck(i, Suit.Shields);
+            InstantiateCardInDeck(i, Suit.Knives);
+            InstantiateCardInDeck(i, Suit.Knives);
 
         }
         SaveDeck();
@@ -55,8 +55,7 @@ public class Player : Participant
 
         for (int i = 0; i < 6; i++)
         {
-            TakeCardFromDeck();
-            _takenCardsInThisTurn = 0;
+            TakeCardFromDeck(false);
         }
     }
     public void AddInHand(Card card)
@@ -71,29 +70,34 @@ public class Player : Participant
 
         _hand.Cards.Remove(card);
     }
-    public void InstantiateCardInDeck(int value, Suit suit)
+    public Card InstantiateCardInDeck(int value, Suit suit)
     {
         var card = Instantiate(_cardTemplate);
         card.Initialize(value, suit, _deck);
         card.name = $"{value} of {suit}";
         card.transform.parent = _deck.transform;
         _deck.AddCard(card);
+
+        return card;
     }
-    public void TakeCardFromDeck()
+    public void TakeCardFromDeck(bool cost = true)
     {
-        if (!Board.board.PlayerTurn) return;
+        if (!Board.board.PlayerTurn && cost) return;
 
         if (_hand.Cards.Count < _maxCardCount)
         {
-            if (_takenCardsInThisTurn == 3) return;
+            if (_takenCardsInThisTurn == 3 && cost) return;
 
-            if (_takenCardsInThisTurn == 1)
+            if (_takenCardsInThisTurn == 1 && cost)
             {
                 for (int i = 0; i < 2; i++)
                 {
                     if (_deck.TakeCard(true) != null)
                     {
-                        _takenCardsInThisTurn++;
+                        if (cost)
+                        {
+                            _takenCardsInThisTurn++;
+                        }
                     }
                 }
                 StartCoroutine(TakeCardsByTime(_takenCardsInThisTurn - 1));
@@ -102,7 +106,10 @@ public class Player : Participant
             }
             else
             {
-                _takenCardsInThisTurn++;
+                if (cost)
+                {
+                    _takenCardsInThisTurn++;
+                }
                 StartCoroutine(TakeCardsByTime(1));
             }
         }
@@ -156,8 +163,7 @@ public class Player : Participant
 
             for (int i = 0; i < 6; i++)
             {
-                TakeCardFromDeck();
-                _takenCardsInThisTurn = 0;
+                TakeCardFromDeck(false);
             }
         }
         else

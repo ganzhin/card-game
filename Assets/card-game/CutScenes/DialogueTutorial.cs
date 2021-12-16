@@ -22,20 +22,17 @@ public class DialogueTutorial : MonoBehaviour
                 for (int i = 3; i <= 4; i++)
                 {
                     FindObjectOfType<Player>().InstantiateCardInDeck(i, _optionalSuit1);
-                    FindObjectOfType<Player>().TakeCardFromDeck();
-                    FindObjectOfType<Player>()._takenCardsInThisTurn = 0;
+                    FindObjectOfType<Player>().TakeCardFromDeck(false);
 
                     FindObjectOfType<Player>().InstantiateCardInDeck(i, _optionalSuit2);
-                    FindObjectOfType<Player>().TakeCardFromDeck();
-                    FindObjectOfType<Player>()._takenCardsInThisTurn = 0;
+                    FindObjectOfType<Player>().TakeCardFromDeck(false);
                 }
             }
 
             for (int i = 2; i <= 4; i++)
             {
                 FindObjectOfType<Player>().InstantiateCardInDeck(i, _tutorialSuit);
-                FindObjectOfType<Player>().TakeCardFromDeck();
-                FindObjectOfType<Player>()._takenCardsInThisTurn = 0;
+                FindObjectOfType<Player>().TakeCardFromDeck(false);
             }
         }
 

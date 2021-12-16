@@ -1,7 +1,20 @@
 ﻿public enum Suit
 {
-    branches,
-    knives,
-    potions,
-    shields
+    Branches,
+    Knives,
+    Potions,
+    Shields,
+    Arrow,
+    Bag,
+    
+    Bow,
+    BrokenDagger,
+    Divider,
+    Exchange,
+    Fire,
+    Poison,
+    Quiver,
+    Storm,
+    TowerShield,
+    Void,
 }

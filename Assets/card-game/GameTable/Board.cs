@@ -56,18 +56,31 @@ public class Board : MonoBehaviour
             card.GetComponent<Collider>().enabled = false;
         }
 
-        foreach (var card in Cards)
+        for (int i = Cards.Count - 1; i >= 0; i--)
         {
+            Card card = Cards[i];
             card.Play();
+        }
+        yield return new WaitForSeconds(Settings.CardPause);
+
+        for (int i = Cards.Count - 1; i >= 0; i--)
+        {
+            Card card = Cards[i];
+            card.AfterPlay();
             yield return new WaitForSeconds(Settings.CardPause);
         }
 
-        Cards.Clear();
         ChangeCurrentPrice(-_currentEnergyPrice);
 
-        yield return new WaitForSeconds(Settings.LongCardPause);
+        yield return new WaitForSeconds(Settings.LongCardPause*(Cards.Count*2));
 
         EndTurn();
+
+        if (!PlayerTurn)
+            foreach (var card in Cards)
+            {
+                card.GetComponent<Collider>().enabled = true;
+            }
 
     }
 

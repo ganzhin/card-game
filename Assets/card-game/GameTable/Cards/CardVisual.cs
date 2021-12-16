@@ -47,27 +47,21 @@ public class CardVisual : MonoBehaviour
     {
         foreach (var textMesh in _values)
         {
-            textMesh.text = _value switch
-            {
-                11 => "Balance",
-                12 => "Worm",
-                13 => "Bag",
-                14 => "Void",
-                15 => "Arrow",
-                _ => _value.ToString(),
-            };
+            textMesh.text = _value.ToString();
         }
-        if (_value > 10)
-        {
-            _suitRenderer.material.mainTexture = _arcaneSuitTextures[_value - 11];
-        }
-        else
-        {
-            _suitRenderer.material.mainTexture = _suitTextures[(int)_suit];
-        }
+
+        _suitRenderer.material.mainTexture = _suitTextures[(int)_suit];
+
         foreach (var renderer in _miniSuitRenderer)
         {
-            renderer.material.mainTexture = _miniSuitTextures[(int)_suit];
+            if ((int)_suit < 4)
+            {
+                renderer.material.mainTexture = _miniSuitTextures[(int)_suit];
+            }
+            else
+            {
+                renderer.material.mainTexture = _suitTextures[(int)_suit];
+            }
         }
     }
 }

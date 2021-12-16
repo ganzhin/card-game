@@ -25,6 +25,11 @@ public abstract class Participant : MonoBehaviour
 
     public virtual void TakeDamage(int value)
     {
+        _healthBar.SetValue(_health);
+        _armorBar.SetValue(_armor);
+
+        if (value <= 0) return;
+
         if (_armor > 0)
         {
             _armor -= value;
