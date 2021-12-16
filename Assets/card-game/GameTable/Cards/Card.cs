@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 [RequireComponent(typeof(CardVisual))]
@@ -145,6 +146,14 @@ public class Card : MonoBehaviour
             {
                 transform.localPosition = Vector3.Lerp(transform.localPosition, transform.localPosition + Vector3.down * .01f, Time.deltaTime);
             }
+            foreach (var renderer in GetComponentsInChildren<Renderer>())
+            {
+                if (renderer.material.HasColor("_Color"))
+                {
+                    renderer.material.color = Color.Lerp(renderer.material.color, Color.clear, timer / 1.2f);
+                }
+            }
+
             yield return null;
         }
         transform.position = Vector3.down;
@@ -160,6 +169,10 @@ public class Card : MonoBehaviour
         for (int i = 0; i < GetComponentsInChildren<Renderer>().Length; i++)
         {
             GetComponentsInChildren<Renderer>()[i].material = _cardMaterials[i];
+            if (GetComponentsInChildren<Renderer>()[i].material.HasColor("_Color"))
+            {
+                GetComponentsInChildren<Renderer>()[i].material.color = Color.white;
+            }
         }
     }
 

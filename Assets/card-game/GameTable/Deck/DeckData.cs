@@ -42,4 +42,22 @@ public class DeckData
         serializer.Serialize(stream, this);
         stream.Close();
     }
+
+    public static DeckData Load()
+    {
+        if (File.Exists($"{Application.dataPath}/Save/deck.xml"))
+        {
+            var serializer = new XmlSerializer(typeof(DeckData));
+            var stream = new FileStream($"{Application.dataPath}/Save/deck.xml", FileMode.Open);
+
+            DeckData loadedDeckData = serializer.Deserialize(stream) as DeckData;
+            stream.Close();
+
+            return loadedDeckData;
+        }
+        else
+        {
+            return null;
+        }
+    }
 }

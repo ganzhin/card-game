@@ -146,13 +146,9 @@ public class Player : Participant
     }
     public void LoadDeck()
     {
-        if (File.Exists($"{Application.dataPath}/Save/deck.xml"))
+        if (DeckData.Load() != null)
         {
-            var serializer = new XmlSerializer(typeof(DeckData));
-            var stream = new FileStream($"{Application.dataPath}/Save/deck.xml", FileMode.Open);
-
-            DeckData loadedDeckData = serializer.Deserialize(stream) as DeckData;
-            stream.Close();
+            DeckData loadedDeckData = DeckData.Load();
 
             for (int i = 0; i < loadedDeckData.Values.Count; i++)
             {

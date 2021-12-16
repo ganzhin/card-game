@@ -73,7 +73,9 @@ public class DialogueTutorial : MonoBehaviour
                 SceneLoader.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             }
         }
-        Board.board.PlayerTurn = true;
+        if (Board.board)
+            Board.board.PlayerTurn = true;
+
         Settings.Data.FirstTutorialPassed = true;
         Settings.SaveSettings();
     }
