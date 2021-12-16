@@ -104,7 +104,7 @@ public class Enemy : Participant
     public override void Death()
     {
         Board.board.Win();
-        ChipMoney.Money += Random.Range(5, 14);
+        ChipMoney.Money += Random.Range(1, 6);
         ChipMoney.Health = FindObjectOfType<Player>()._health;
         ChipMoney.Floor++;
 

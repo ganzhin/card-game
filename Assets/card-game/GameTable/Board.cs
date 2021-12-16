@@ -18,6 +18,7 @@ public class Board : MonoBehaviour
 
     [SerializeField] private bool _victory;
     [SerializeField] private bool _loose;
+    private bool _cardsArePlayed;
 
     private void Start()
     {
@@ -44,9 +45,10 @@ public class Board : MonoBehaviour
     {
         if (Cards.Count == 0) return;
         if (_currentEnergyPrice > _maxEnergy) return;
+        if (_cardsArePlayed) return;
 
         StartCoroutine(PlayCardsRoutine());
-        
+        _cardsArePlayed = true;
     }
 
     private IEnumerator PlayCardsRoutine()
@@ -118,6 +120,8 @@ public class Board : MonoBehaviour
     public static void EndTurn()
     {
         board.PlayerTurn = !board.PlayerTurn;
+        board._cardsArePlayed = false;
+
         FindObjectOfType<Player>()._takenCardsInThisTurn = 0;
 
         if (board.PlayerTurn == false)
