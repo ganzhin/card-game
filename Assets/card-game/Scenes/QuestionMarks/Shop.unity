@@ -2687,6 +2687,9 @@ MonoBehaviour:
   _shopCardsRoot: {fileID: 1656485402}
   _width: 0.075
   _height: 0.09
+  _free: 0
+  _one: 0
+  _textMeshPrefab: {fileID: 2306951304856944239, guid: bd12bca70f78763468f2cd04979ff10e, type: 3}
 --- !u!4 &1656485402
 Transform:
   m_ObjectHideFlags: 0

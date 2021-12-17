@@ -13,14 +13,13 @@ public class Card : MonoBehaviour
 
     public Deck OwnerDeck { get; private set; }
 
-    public int CurrentPrice;
-    public int CurrentEffect;
-
     [Header("Card Info")]
     [SerializeField] private int _value;
-    [SerializeField] private Suit _suit;
 
-    private CardEffect _cardEffect;
+    [SerializeField] private CardEffects.CardEffect[] _onPlace;
+    [SerializeField] private CardEffects.CardEffect[] _onRemove;
+    [SerializeField] private CardEffects.CardEffect[] _onPlay;
+    [SerializeField] private CardEffects.CardEffect[] _onAfterPlay;
 
     private CardVisual _cardVisual;
     [SerializeField] private Renderer _faceRenderer;
@@ -51,26 +50,17 @@ public class Card : MonoBehaviour
         SoundDesign.SoundOneShot(_cardFluff, transform);
     }
 
-    public void Initialize(int value, Suit suit, Deck ownerDeck)
+    public void Initialize(Deck ownerDeck)
     {
-        _value = value;
-        _suit = suit;
         OwnerDeck = ownerDeck;
-
-        foreach (var renderer in GetComponentsInChildren<Renderer>())
-        {
-            _cardMaterials.Add(renderer.material);
-        }
-
         Initialize();
     }
 
     public void Initialize()
     {
         _cardVisual = GetComponent<CardVisual>();
-        _cardVisual.Init(_value, _suit);
+        _cardVisual.Init(_value);
         _cardVisual.Refresh();
-        _cardEffect = EffectAssigner.GetEffect(this, _value, _suit);
 
         foreach (var renderer in GetComponentsInChildren<Renderer>())
         {
@@ -80,30 +70,41 @@ public class Card : MonoBehaviour
 
     internal void AfterPlay()
     {
-        _cardEffect.AfterPlay();
+        foreach (var effect in _onAfterPlay)
+        {
+            effect.Invoke(FindObjectOfType<Player>());
+        }
     }
 
     public void Play()
     {
-        _cardEffect.Play(_value);
-        if (Board.board.PlayerTurn)
+        foreach (var effect in _onPlay)
         {
-            _cardEffect.Play(_value, FindObjectOfType<Enemy>());
-        }
-        else
-        {
-            _cardEffect.Play(_value, FindObjectOfType<Player>());
+            if (Board.board.PlayerTurn)
+            {
+                effect.Invoke(FindObjectOfType<Enemy>());
+            }
+            else
+            {
+                effect.Invoke(FindObjectOfType<Player>());
+            }
         }
     }
 
     public void PlaceEffect()
     {
-        _cardEffect.PlaceEffect(CurrentPrice);
+        foreach (var effect in _onPlace)
+        {
+            effect.Invoke(FindObjectOfType<Player>());
+        }
     }
 
     public void RemoveEffect()
     {
-        _cardEffect.RemoveEffect(CurrentPrice);
+        foreach (var effect in _onRemove)
+        {
+            effect.Invoke(FindObjectOfType<Player>());
+        }
     }
 
     public void AddOnBoard()
@@ -193,8 +194,5 @@ public class Card : MonoBehaviour
     {
         return _value;
     }
-    public int GetSuit()
-    {
-        return (int)_suit;
-    }
+
 }

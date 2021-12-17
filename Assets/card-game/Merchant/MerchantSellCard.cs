@@ -3,8 +3,10 @@ using UnityEngine;
 
 public class MerchantSellCard : MonoBehaviour
 {
+    public bool One;
+    
     private int _price;
-    private bool _sold = false;
+    private bool _sold;
     [SerializeField] private TextMesh _priceText;
 
     public int Price
@@ -13,6 +15,7 @@ public class MerchantSellCard : MonoBehaviour
         set
         {
             _price = value;
+            if (_priceText)
             _priceText.text = value.ToString();
         }
     }
@@ -28,10 +31,15 @@ public class MerchantSellCard : MonoBehaviour
         {
             ChipMoney.Money -= Price;
             _sold = true;
-            PickCard.SaveInDeck(GetComponent<Card>(), false);
             StartCoroutine(SellRoutine());
-            FindObjectOfType<ChipMoney>().UpdateMoney();
-        }
+
+            if (FindObjectOfType<ChipMoney>())
+            {
+                FindObjectOfType<ChipMoney>().UpdateMoney();
+            }
+
+            PickCard.SaveInDeck(GetComponent<Card>(), One);
+         }
     }
     private IEnumerator SellRoutine()
     {

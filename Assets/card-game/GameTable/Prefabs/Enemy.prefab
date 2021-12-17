@@ -82,26 +82,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hand: {fileID: 0}
   _deck: {fileID: 0}
-  _health: 8
-  _isDead: 0
-  _healthBar: {fileID: 4832615118035937835}
+  _health: 16
+  _maxHealth: 16
+  _healthBar: {fileID: 191275111462720923}
   _armorBar: {fileID: 8309590518154978478}
   _armor: 0
+  _keepArmor: 0
   _turnsVariants:
   - Cards:
-    - {fileID: 4071144985571272715, guid: 1c49676b1d4a7f34ca6dbdb9aeeb6e0c, type: 3}
-    - {fileID: 4071144985571272715, guid: 91c9504b37c538c469b33c00b99aba87, type: 3}
-    - {fileID: 4071144985571272715, guid: edc91f463e51c0844846be83658d98dd, type: 3}
-    - {fileID: 4071144985571272715, guid: 3dab458a66b1612438f80d9e87b1157c, type: 3}
+    - {fileID: 4071144985571272715, guid: cadf4e7dc00095d4d94e4150865bf032, type: 3}
+    - {fileID: 4071144985571272715, guid: 462d7e8830014054cab927ca61a7bdcb, type: 3}
+    - {fileID: 4071144985571272715, guid: afc3b571e1c7d3249997cfd5dd12c683, type: 3}
   - Cards:
-    - {fileID: 4071144985571272715, guid: c1c97aa4d577bc14d86249c453bffdfd, type: 3}
-    - {fileID: 4071144985571272715, guid: 00442b24f02add448ac80c214e4ff06e, type: 3}
-    - {fileID: 4071144985571272715, guid: 0ed209cd7633edb47a5b3921dda83e63, type: 3}
-    - {fileID: 4071144985571272715, guid: 38e1d1b1371603441a826cdecdfd2453, type: 3}
+    - {fileID: 4071144985571272715, guid: cadf4e7dc00095d4d94e4150865bf032, type: 3}
+    - {fileID: 4071144985571272715, guid: cadf4e7dc00095d4d94e4150865bf032, type: 3}
+    - {fileID: 4071144985571272715, guid: 462d7e8830014054cab927ca61a7bdcb, type: 3}
   - Cards:
-    - {fileID: 4071144985571272715, guid: 3dab458a66b1612438f80d9e87b1157c, type: 3}
-    - {fileID: 4071144985571272715, guid: 91c9504b37c538c469b33c00b99aba87, type: 3}
-    - {fileID: 4071144985571272715, guid: 3dab458a66b1612438f80d9e87b1157c, type: 3}
+    - {fileID: 4071144985571272715, guid: 49eb789778a91f244b93dcc4431aaf93, type: 3}
+    - {fileID: 4071144985571272715, guid: afc3b571e1c7d3249997cfd5dd12c683, type: 3}
+  - Cards:
+    - {fileID: 4071144985571272715, guid: cb57a1c7362d6d14381a5c382094a109, type: 3}
+  - Cards:
+    - {fileID: 4071144985571272715, guid: afc3b571e1c7d3249997cfd5dd12c683, type: 3}
+    - {fileID: 4071144985571272715, guid: cadf4e7dc00095d4d94e4150865bf032, type: 3}
+  - Cards:
+    - {fileID: 4071144985571272715, guid: cadf4e7dc00095d4d94e4150865bf032, type: 3}
+  - Cards:
+    - {fileID: 4071144985571272715, guid: 9643cba84742294488522b6e4c844d00, type: 3}
+  - Cards:
+    - {fileID: 4071144985571272715, guid: d0da26b74b7de0748a6baea58a5c2418, type: 3}
+    - {fileID: 4071144985571272715, guid: d0da26b74b7de0748a6baea58a5c2418, type: 3}
+  - Cards:
+    - {fileID: 4071144985571272715, guid: 9eee94943d7baf84c9ffc81f4cca50d4, type: 3}
   _cardsPlace: {fileID: 8309590517611516880}
   _cardWidth: 0.065
   _currentCards: []
@@ -199,15 +211,15 @@ PrefabInstance:
       objectReference: {fileID: 6308809236622750591}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33f8d26ac245e1c41975e14081c641a2, type: 3}
---- !u!114 &4832615118035937835 stripped
+--- !u!114 &191275111462720923 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3477198190630383477, guid: 33f8d26ac245e1c41975e14081c641a2, type: 3}
+  m_CorrespondingSourceObject: {fileID: 8211772135912935621, guid: 33f8d26ac245e1c41975e14081c641a2, type: 3}
   m_PrefabInstance: {fileID: 8309590517231994206}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8eb02a9b855b6a54aab07d34e9398554, type: 3}
+  m_Script: {fileID: 11500000, guid: e7cb87c75b76e3e4c8918e7d572ae537, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &4832615118035937836 stripped

@@ -1907,7 +1907,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _noCards: 0
-  _tutorialSuit: 2
+  _tutorialSuit: potions
   _optional: 0
   _optionalSuit1: 0
   _optionalSuit2: 0

@@ -1780,10 +1780,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _noCards: 0
-  _tutorialSuit: 0
+  _tutorialSuit: branches
   _optional: 1
-  _optionalSuit1: 3
-  _optionalSuit2: 1
+  _optionalSuit1: shields
+  _optionalSuit2: knives
 --- !u!114 &1325733665
 MonoBehaviour:
   m_ObjectHideFlags: 0

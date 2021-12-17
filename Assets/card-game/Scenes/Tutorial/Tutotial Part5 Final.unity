@@ -1730,10 +1730,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _noCards: 1
-  _tutorialSuit: 1
+  _tutorialSuit: knives
   _optional: 0
-  _optionalSuit1: 3
-  _optionalSuit2: 1
+  _optionalSuit1: knives
+  _optionalSuit2: knives
 --- !u!114 &1325733665
 MonoBehaviour:
   m_ObjectHideFlags: 0

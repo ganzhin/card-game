@@ -1,153 +1,133 @@
-﻿using System.Collections;
+using System.Collections;
 using UnityEngine;
 
-public abstract class CardEffect
+namespace CardEffects
 {
-    internal Player Player => Object.FindObjectOfType<Player>();
-    internal Enemy Enemy => Object.FindObjectOfType<Enemy>();
-
-    private int _buff = 0;
-    internal Card _thisCard;
-    
-    internal CardEffect(Card thisCard)
+    [System.Serializable]
+    public abstract class CardEffect : MonoBehaviour
     {
-        _thisCard = thisCard;
-    }
+        public int Value;
+        internal int _buff;
 
-    public virtual void PlaceEffect(int value)
-    {
-        Board.ChangeCurrentPrice(value);
-    }
-    public virtual void RemoveEffect(int value)
-    {
-        Board.ChangeCurrentPrice(-value);
-    }
-    public virtual void Play(int value) { }
-    public virtual void Play(int value, Card target) { }
-    public virtual void Play(int value, Participant target) { }
-    public virtual void AfterPlay() { }
+        internal Player Player => FindObjectOfType<Player>();
+        internal Enemy Enemy => FindObjectOfType<Enemy>();
+        internal Card ThisCard => GetComponent<Card>();
 
-    public IEnumerator DropRoutine(Card card)
-    {
-        var timer = 0f;
-        Vector3 cardPosition = card.transform.position;
-
-        while (timer < Settings.LongCardPause)
+        public abstract void Invoke(Participant target);
+        public virtual void PlaceEffect(int value)
         {
-            timer += Time.deltaTime;
-            if (timer <= Settings.LongCardPause / 2f)
-            {
-                cardPosition += card.transform.up * (-4 * (timer * timer) + 4 * timer) * 0.001f;
-            }
-            else
-            {
-                cardPosition -= card.transform.up * (-4 * (timer * timer) + 4 * timer) * 0.0005f;
-            }
-            card.transform.position = cardPosition;
-
-            yield return null;
-
+            Board.ChangeCurrentPrice(value);
         }
-
-        card.Drop();
-
-    }
-
-    public virtual void Burn(Card card)
-    {
-        card.Burn();
-        if (Player._hand.Cards.Contains(card))
+        public virtual void RemoveEffect(int value)
         {
-            Player._hand.Cards.Remove(card);
+            Board.ChangeCurrentPrice(-value);
         }
-    }
-    public virtual void Drop(Card card)
-    {
-        Object.FindObjectOfType<MonoBehaviour>().StartCoroutine(DropRoutine(card));
-    }
-    public virtual void TakeCard()
-    {
-        Player.TakeCardFromDeck(false);
-    }
-    public virtual Card AddCardInDeck(int value, Suit suit)
-    {
-        var card = Player.InstantiateCardInDeck(value, suit);
-        return card;
-    }
-    public virtual void ShuffleDeck()
-    {
-        Player._deck.Shuffle();
-    }
-    public virtual int DropHand()
-    {
-        int ret = Player._hand.Cards.Count;
-        for (int i = Player._hand.Cards.Count - 1; i >= 0; i--)
+        public virtual void AfterPlay() { }
+        
+        public IEnumerator DropRoutine(Card card)
         {
-            Card card = Player._hand.Cards[i];
+            var timer = 0f;
+            Vector3 cardPosition = card.transform.position;
+
+            while (timer < Settings.LongCardPause)
+            {
+                timer += Time.deltaTime;
+                if (timer <= Settings.LongCardPause / 2f)
+                {
+                    cardPosition += card.transform.up * (-4 * (timer * timer) + 4 * timer) * 0.001f;
+                }
+                else
+                {
+                    cardPosition -= card.transform.up * (-4 * (timer * timer) + 4 * timer) * 0.0005f;
+                }
+                card.transform.position = cardPosition;
+
+                yield return null;
+
+            }
+
             card.Drop();
-            if (Player._hand.Cards.Contains(card))
-            {
-                Player._hand.Cards.Remove(card);
-            }
+
         }
-        return ret;
-    }
-    public virtual void Attack(Participant target, int value)
-    {
-        target.TakeDamage(value + _buff);
-       
-        _buff = 0;
-    }
-    public virtual void Heal(Participant target, int value)
-    {
-        var participants = Object.FindObjectsOfType<Participant>();
-        foreach (var participant in participants)
+
+        public virtual void Burn(Card card)
         {
-            if (participant != target)
-            {
-                participant.Heal(value + _buff);
-            }
-        }
-        _buff = 0;
-    }
-    public virtual void AddArmor(Participant target, int value)
-    {
-        var participants = Object.FindObjectsOfType<Participant>();
-        foreach (var participant in participants)
-        {
-            if (participant != target)
-            {
-                participant.AddArmor(value + _buff);
-            }
-        }
-        _buff = 0;
-    }
-    public virtual int BurnHand()
-    {
-        int ret = Player._hand.Cards.Count;
-        for (int i = Player._hand.Cards.Count - 1; i >= 0; i--)
-        {
-            Card card = Player._hand.Cards[i];
             card.Burn();
             if (Player._hand.Cards.Contains(card))
             {
                 Player._hand.Cards.Remove(card);
             }
         }
-        return ret;
-    }
-    public virtual void UnburnBurned()
-    {
-        Player._deck.RestoreBurnedCards();
-    }
-    public virtual void GetBuffFromOtherCard(Suit otherSuit, int value = 1)
-    {
-        foreach (var check in Board.board.Cards)
+        public virtual void Drop(Card card)
         {
-            if (check.GetSuit() == (int)otherSuit)
+            StartCoroutine(DropRoutine(card));
+        }
+
+        public virtual void ShuffleDeck()
+        {
+            Player._deck.Shuffle();
+        }
+        public virtual int DropHand()
+        {
+            int ret = Player._hand.Cards.Count;
+            for (int i = Player._hand.Cards.Count - 1; i >= 0; i--)
             {
-                _buff += value;
+                Card card = Player._hand.Cards[i];
+                card.Drop();
+                if (Player._hand.Cards.Contains(card))
+                {
+                    Player._hand.Cards.Remove(card);
+                }
             }
+            return ret;
+        }
+        public virtual void Attack(Participant target, int value)
+        {
+            target.TakeDamage(value + _buff);
+
+            _buff = 0;
+        }
+        public virtual void Heal(Participant target, int value)
+        {
+            var participants = Object.FindObjectsOfType<Participant>();
+            foreach (var participant in participants)
+            {
+                if (participant != target)
+                {
+                    participant.Heal(value + _buff);
+                }
+            }
+            _buff = 0;
+        }
+        public virtual void AddArmor(Participant target, int value)
+        {
+            var participants = Object.FindObjectsOfType<Participant>();
+            foreach (var participant in participants)
+            {
+                if (participant != target)
+                {
+                    participant.AddArmor(value + _buff);
+                }
+            }
+            _buff = 0;
+        }
+        public virtual int BurnHand()
+        {
+            int ret = Player._hand.Cards.Count;
+            for (int i = Player._hand.Cards.Count - 1; i >= 0; i--)
+            {
+                Card card = Player._hand.Cards[i];
+                card.Burn();
+                if (Player._hand.Cards.Contains(card))
+                {
+                    Player._hand.Cards.Remove(card);
+                }
+            }
+            return ret;
+        }
+        public virtual void UnburnBurned()
+        {
+            Player._deck.RestoreBurnedCards();
         }
     }
 }

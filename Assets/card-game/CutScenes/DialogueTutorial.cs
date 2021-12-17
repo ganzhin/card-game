@@ -5,47 +5,48 @@ public class DialogueTutorial : MonoBehaviour
 {
     [SerializeField] private bool _noCards;
 
-    [SerializeField] private Suit _tutorialSuit;
+    [SerializeField] private string _tutorialSuit;
 
     [SerializeField] private bool _optional;
-    [SerializeField] private Suit _optionalSuit1;
-    [SerializeField] private Suit _optionalSuit2;
+    [SerializeField] private string _optionalSuit1;
+    [SerializeField] private string _optionalSuit2;
 
     private bool _canBeLoaded = true;
 
     private void Start()
-    {
+    { 
         if (!_noCards)
         {
             if (_optional)
             {
                 for (int i = 3; i <= 4; i++)
                 {
-                    FindObjectOfType<Player>().InstantiateCardInDeck(i, _optionalSuit1);
+                    FindObjectOfType<Player>().InstantiateCardInDeck($"{i} of " + _optionalSuit1);
                     FindObjectOfType<Player>().TakeCardFromDeck(false);
 
-                    FindObjectOfType<Player>().InstantiateCardInDeck(i, _optionalSuit2);
+                    FindObjectOfType<Player>().InstantiateCardInDeck($"{i} of " + _optionalSuit2);
                     FindObjectOfType<Player>().TakeCardFromDeck(false);
                 }
             }
 
             for (int i = 2; i <= 4; i++)
             {
-                FindObjectOfType<Player>().InstantiateCardInDeck(i, _tutorialSuit);
+                FindObjectOfType<Player>().InstantiateCardInDeck($"{i} of " + _tutorialSuit);
                 FindObjectOfType<Player>().TakeCardFromDeck(false);
             }
         }
 
-        for (int i = 2; i < 9; i++)
+        for (int i = 2; i <= 4; i++)
         {
-            FindObjectOfType<Player>().InstantiateCardInDeck(i, _tutorialSuit);
+            FindObjectOfType<Player>().InstantiateCardInDeck($"{i} of " + _tutorialSuit);
         }
-        for (int i = 2; i < 9; i++)
+        for (int i = 2; i <= 4; i++)
         {
-            FindObjectOfType<Player>().InstantiateCardInDeck(i, _tutorialSuit);
+            FindObjectOfType<Player>().InstantiateCardInDeck($"{i} of " + _tutorialSuit);
         }
 
     }
+
     private void FixedUpdate()
     {
         if (Board.board && Board.board.PlayerTurn == false)

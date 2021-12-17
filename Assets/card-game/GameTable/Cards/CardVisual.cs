@@ -9,16 +9,14 @@ public class CardVisual : MonoBehaviour
     [SerializeField] private Renderer[] _miniSuitRenderer;
 
     [SerializeField] private TextMesh[] _values;
-    [SerializeField] private Texture[] _suitTextures;
 
-    [SerializeField] private Texture[] _miniSuitTextures;
-    [SerializeField] private Texture[] _arcaneSuitTextures;
+    [SerializeField] private Texture _suitTexture;
+    [SerializeField] private Texture _suitTextureMini;
 
     private AudioClip _sound;
     private AudioSource _audioSource;
 
     private int _value;
-    private Suit _suit;
 
     private void Start()
     {
@@ -37,10 +35,10 @@ public class CardVisual : MonoBehaviour
         Refresh();
     }
 
-    internal void Init(int value, Suit suit)
+    internal void Init(int value)
     {
         _value = value;
-        _suit = suit;
+        Refresh();
     }
 
     public void Refresh()
@@ -50,18 +48,11 @@ public class CardVisual : MonoBehaviour
             textMesh.text = _value.ToString();
         }
 
-        _suitRenderer.material.mainTexture = _suitTextures[(int)_suit];
+        _suitRenderer.material.mainTexture = _suitTexture;
 
         foreach (var renderer in _miniSuitRenderer)
         {
-            if ((int)_suit < 4)
-            {
-                renderer.material.mainTexture = _miniSuitTextures[(int)_suit];
-            }
-            else
-            {
-                renderer.material.mainTexture = _suitTextures[(int)_suit];
-            }
+            renderer.material.mainTexture = _suitTextureMini;
         }
     }
 }

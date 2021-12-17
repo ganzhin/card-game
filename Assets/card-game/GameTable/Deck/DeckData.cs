@@ -7,23 +7,20 @@ using UnityEngine;
 [System.Serializable]
 public class DeckData
 {
-    public List<int> Values;
-    public List<int> Suits;
+    public List<string> CardNames;
 
     public DeckData()
     { }
 
     public DeckData(Deck deck)
     {
-        Values = new List<int>();
-        Suits = new List<int>();
+        CardNames = new List<string>();
 
         List<Card> cards = deck.GetAllCards();
         for (int i = 0; i < cards.Count; i++)
         {
             Card card = cards[i];
-            Values.Add(card.GetValue());
-            Suits.Add(card.GetSuit());
+            CardNames.Add(card.name);
         }
 
         Save();

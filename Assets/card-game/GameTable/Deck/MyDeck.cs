@@ -60,24 +60,6 @@ public class MyDeck : MonoBehaviour
         _newPosition = _startPosition;
         _deckData = DeckData.Load();
 
-        int tempValue;
-        int tempSuit;
-        for (int i = 0; i < _deckData.Suits.Count - 1; i++)
-        {
-            for (int j = 0; j < _deckData.Suits.Count - i - 1; j++)
-            {
-                if (_deckData.Suits[j + 1] < _deckData.Suits[j])
-                {
-                    tempSuit = _deckData.Suits[j + 1];
-                    tempValue = _deckData.Values[j + 1];
-                    _deckData.Values[j + 1] = _deckData.Values[j];
-                    _deckData.Suits[j + 1] = _deckData.Suits[j];
-
-                    _deckData.Suits[j] = tempSuit;
-                    _deckData.Values[j] = tempValue;
-                }
-            }
-        }
         /* if (FindObjectOfType<Deck>())
         {
 
@@ -86,14 +68,13 @@ public class MyDeck : MonoBehaviour
         {
             int row = 0;
             int column = 0;
-            for (int i = 0; i < _deckData.Values.Count; i++)
+            for (int i = 0; i < _deckData.CardNames.Count; i++)
             {
-                int value = _deckData.Values[i];
-                int suit = _deckData.Suits[i];
+                string cardName = _deckData.CardNames[i];
 
-                var card = Instantiate(Resources.Load<Card>(nameof(Card)), _showDeckTransform);
+                var card = Instantiate(CardGenerator.GetCard(cardName), _showDeckTransform);
                 card.transform.localPosition += column * _width * Vector3.right + row * _height * Vector3.down;
-                card.Initialize(value, (Suit)suit, null);
+                card.Initialize();
 
                 column++;
                 if (column >= _columns)

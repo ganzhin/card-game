@@ -1,42 +1,75 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public static class CardGenerator
 {
-    public static void GetCard(out int value, out Suit suit, int maxValue = 9)
-    {
-        value = 1;
-        suit = (Suit)Random.Range(0, System.Enum.GetNames(typeof(Suit)).Length);
+    private static Card[] _commonCards;
+    private static Card[] _uncommonCards;
+    private static Card[] _rareCards;
 
-        value = suit switch
+    private static List<Card> _allCards = new List<Card>();
+
+    private static int _chanceCommon = 40;
+    private static int _chanceUncommon = 35;
+    private static int _chanceRare = 25;
+
+    public static Card GetCard()
+    {
+        _commonCards = Resources.LoadAll<Card>("CommonCards");
+        _uncommonCards = Resources.LoadAll<Card>("UncommonCards");
+        _rareCards = Resources.LoadAll<Card>("RareCards");
+
+        _allCards.AddRange(_commonCards);
+        _allCards.AddRange(_uncommonCards);
+        _allCards.AddRange(_rareCards);
+
+        var random = Random.Range(0, 101);
+        if (random <= _chanceCommon)
         {
-            //Suit.Branches => throw new NotImplementedException(),
-            //Suit.Knives => throw new NotImplementedException(),
-            //Suit.Potions => throw new NotImplementedException(),
-            //Suit.Shields => throw new NotImplementedException(),
-            Suit.Arrow => 1,
-            Suit.Bow => 3,
-            //Suit.Poison => throw new NotImplementedException(),
-            Suit.BrokenDagger => 3,
-            Suit.Bag => 6,
-            //Suit.Divider => throw new System.NotImplementedException(),
-            //Suit.Exchange => throw new System.NotImplementedException(),
-            Suit.Fire => 9,
-            Suit.Quiver => Random.Range(2, 5),
-            Suit.Storm => 9,
-            Suit.TowerShield => Random.Range(1, 3),
-            Suit.Void => 4,
-            _ => Random.Range(2, maxValue)
-        };
+            return _commonCards[Random.Range(0, _commonCards.Length)];
+
+        }
+        else if (random <= _chanceCommon + _chanceUncommon)
+        {
+            return _uncommonCards[Random.Range(0, _uncommonCards.Length)];
+
+        }
+        else if (random <= _chanceCommon + _chanceUncommon + _chanceRare)
+        {
+            return _rareCards[Random.Range(0, _rareCards.Length)];
+
+        }
+        else
+        {
+            return null;
+
+        }    
     }
 
-    public static int GetCardWithPrice(out int value, out Suit suit, int maxValue = 9)
+    public static Card GetCard(string name)
     {
-        GetCard(out value, out suit, maxValue);
-        int price = Random.Range(5, 20);
+        _commonCards = Resources.LoadAll<Card>("CommonCards");
+        _uncommonCards = Resources.LoadAll<Card>("UncommonCards");
+        _rareCards = Resources.LoadAll<Card>("RareCards");
 
-        return price;
+        _allCards.AddRange(_commonCards);
+        _allCards.AddRange(_uncommonCards);
+        _allCards.AddRange(_rareCards);
 
+        foreach (var card in _allCards)
+        {
+            if (card.name == name)
+            {
+                return card;
+            }
+        }
+        return null;
     }
 
+    public static Card GetCardWithPrice(out int price)
+    {
+        price = Random.Range(5, 20);
 
+        return GetCard();
+    }
 }

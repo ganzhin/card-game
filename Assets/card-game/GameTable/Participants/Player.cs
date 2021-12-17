@@ -15,8 +15,11 @@ public class Player : Participant
 
     internal override void Start()
     {
-        _health = ChipMoney.Health;
-        _maxHealth = ChipMoney.MaxHealth;
+        if (FindObjectOfType<DialogueTutorial>() == null)
+        {
+            _health = ChipMoney.Health;
+            _maxHealth = ChipMoney.MaxHealth;
+        }
 
         base.Start();
         if (_game)
@@ -38,16 +41,15 @@ public class Player : Participant
     }
     private void StarterDeck()
     {
-        InstantiateCardInDeck(2, Suit.Potions);
-        InstantiateCardInDeck(3, Suit.Potions);
+        InstantiateCardInDeck("2 of potions");
+        InstantiateCardInDeck("3 of potions");
         
         for (int i = 2; i <= 4; i++)
         {
-            InstantiateCardInDeck(i, Suit.Branches);
-            InstantiateCardInDeck(i, Suit.Shields);
-            InstantiateCardInDeck(i, Suit.Knives);
-            InstantiateCardInDeck(i, Suit.Knives);
-
+            InstantiateCardInDeck($"{i} of knives");
+            InstantiateCardInDeck($"{i} of knives");
+            InstantiateCardInDeck($"{i} of shields");
+            InstantiateCardInDeck($"{i} of branches");
         }
         SaveDeck();
 
@@ -70,16 +72,28 @@ public class Player : Participant
 
         _hand.Cards.Remove(card);
     }
-    public Card InstantiateCardInDeck(int value, Suit suit)
+    public Card InstantiateCardInDeck(string name)
     {
-        var card = Instantiate(_cardTemplate);
-        card.Initialize(value, suit, _deck);
-        card.name = $"{value} of {suit}";
+        var card = Instantiate(CardGenerator.GetCard(name));
+        card.name = name;
         card.transform.parent = _deck.transform;
+        card.Initialize(_deck);
         _deck.AddCard(card);
 
         return card;
     }
+
+    public Card InstantiateCardInDeck(Card card) 
+    {
+        var newCard = Instantiate(card);
+        newCard.Initialize();
+        newCard.name = card.name;
+        newCard.transform.parent = _deck.transform;
+        _deck.AddCard(card);
+
+        return card;
+    }
+
     public void TakeCardFromDeck(bool cost = true)
     {
         if (!Board.board.PlayerTurn && cost) return;
@@ -150,9 +164,9 @@ public class Player : Participant
         {
             DeckData loadedDeckData = DeckData.Load();
 
-            for (int i = 0; i < loadedDeckData.Values.Count; i++)
+            for (int i = 0; i < loadedDeckData.CardNames.Count; i++)
             {
-                InstantiateCardInDeck(loadedDeckData.Values[i], (Suit)loadedDeckData.Suits[i]);
+                InstantiateCardInDeck(loadedDeckData.CardNames[i]);
             }
 
             _deck.Shuffle();

@@ -21,6 +21,9 @@ public class Map : MonoBehaviour
             int random = Random.Range(0, 101);
 
             LocationType locationType = (LocationType)Random.Range(0, System.Enum.GetNames(typeof(LocationType)).Length);
+            if (ChipMoney.Floor == 0)
+                locationType = LocationType.Battle;
+
             bool success = random <= _successPercent;
             SceneAsset scene = success ? _scenes[(int)locationType] : _scenes[0];
 
