@@ -20,12 +20,23 @@ public static class CardGenerator
             Suit.Bag => 6,
             //Suit.Divider => throw new System.NotImplementedException(),
             //Suit.Exchange => throw new System.NotImplementedException(),
-            Suit.Fire => 1,
-            //Suit.Quiver => throw new System.NotImplementedException(),
-            Suit.Storm => 1,
+            Suit.Fire => 9,
+            Suit.Quiver => Random.Range(2, 5),
+            Suit.Storm => 9,
             Suit.TowerShield => Random.Range(1, 3),
             Suit.Void => 4,
             _ => Random.Range(2, maxValue)
         };
     }
+
+    public static int GetCardWithPrice(out int value, out Suit suit, int maxValue = 9)
+    {
+        GetCard(out value, out suit, maxValue);
+        int price = Random.Range(5, 20);
+
+        return price;
+
+    }
+
+
 }

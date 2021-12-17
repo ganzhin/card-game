@@ -39,7 +39,7 @@ public class PickCard : MonoBehaviour
         }
     }
 
-    private void SaveInDeck(Card card)
+    public static void SaveInDeck(Card card, bool loadMap = true)
     {
         if (File.Exists($"{Application.dataPath}/Save/deck.xml"))
         {
@@ -55,6 +55,6 @@ public class PickCard : MonoBehaviour
             loadedDeckData.Save();
         }
 
-        SceneLoader.LoadScene("MapScene");
+        if (loadMap) SceneLoader.LoadScene("MapScene");
     }
 }

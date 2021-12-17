@@ -49,25 +49,28 @@ public class ChipMoney : MonoBehaviour
     [SerializeField] private float _randomPositionModifier = 0.02f;
     [SerializeField] private float _spawnHeight;
 
+    [SerializeField] private TextMesh _text;
+
     private List<GameObject> _chips = new List<GameObject>();
 
-    private string text => $"Это оставшиеся фишки. \nИх тут {_money}...{((Money > 0) ? "\nДвойной клик, чтобы восстановить здоровье." : "")}";
+    private string text => $"Это оставшиеся фишки. \nИх тут {_money}...{((_healEnabled && Money > 0) ? "\nДвойной клик, чтобы восстановить здоровье." : "")}";
     [SerializeField] private Dialogue _dialogue;
 
     private float _timeToDoubleClick = .5f;
     private bool _click;
     private float _timer;
+    [SerializeField] private bool _healEnabled = true;
 
     private void Start()
     {
         Load();
         StartCoroutine(SpawnChipsRoutine());
-
+        if (_text) _text.color = Color.clear;
     }
 
     private void OnMouseDown()
     {
-        if (_click)
+        if (_click && _healEnabled)
         {
             ExchangeChips();
             _click = false;
@@ -75,6 +78,23 @@ public class ChipMoney : MonoBehaviour
 
         _click = true;
         _timer = _timeToDoubleClick;
+    }
+
+    private IEnumerator OnMouseEnter()
+    {
+        while (_text != null && _text.color != Color.white)
+        {
+            _text.text = _money.ToString();
+            _text.color = Color.Lerp(_text.color, Color.white, .2f);
+            yield return null;
+        }
+
+    }
+    private void OnMouseExit()
+    {
+        StopCoroutine(nameof(OnMouseEnter));
+        if (_text)
+            _text.color = Color.clear;
     }
 
     private void Update()
@@ -96,12 +116,19 @@ public class ChipMoney : MonoBehaviour
         for (int i = 0; i < Money; i++)
         {
             var chip = Instantiate(_chipPrefab);
+            chip.GetComponent<Collider>().enabled = false;
+            chip.GetComponent<Rigidbody>().isKinematic = true;
+            _chips.Add(chip);
+        }
+        for (int i = 0; i < _chips.Count; i++)
+        {
+            var chip = _chips[i];
             chip.transform.SetParent(transform);
             chip.transform.position = transform.position + Vector3.up * _spawnHeight + Random.insideUnitSphere * _randomPositionModifier;
             chip.transform.eulerAngles = Random.insideUnitSphere * 360;
+            chip.GetComponent<Rigidbody>().isKinematic = false;
+            chip.GetComponent<Collider>().enabled = true;
             yield return new WaitForSeconds(.1f);
-
-            _chips.Add(chip);
         }
     }
 
@@ -154,15 +181,20 @@ public class ChipMoney : MonoBehaviour
             Money = 0;
         }
         FindObjectOfType<Map>().UpdateBar();
-        
-        for (int i = _chips.Count-1; i >= 0; i--)
+
+        UpdateMoney();
+
+    }
+
+    public void UpdateMoney()
+    {
+        for (int i = _chips.Count - 1; i >= 0; i--)
         {
-            if (i > Money-1)
+            if (i > Money - 1)
             {
-                Destroy(_chips[i]);
-                _chips.RemoveAt(i);
+                _chips[i].transform.position += Vector3.down;
+                _chips[i].GetComponent<Rigidbody>().useGravity = false;
             }
         }
-
     }
 }

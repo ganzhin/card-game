@@ -835,7 +835,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2444515566395824266, guid: 1b87de2a8b15e214fbdb5415591cc371, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.3168
+      value: -0.3203
       objectReference: {fileID: 0}
     - target: {fileID: 2444515566395824266, guid: 1b87de2a8b15e214fbdb5415591cc371, type: 3}
       propertyPath: m_LocalPosition.y
@@ -843,7 +843,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2444515566395824266, guid: 1b87de2a8b15e214fbdb5415591cc371, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.2666
+      value: 0.3087
       objectReference: {fileID: 0}
     - target: {fileID: 2444515566395824266, guid: 1b87de2a8b15e214fbdb5415591cc371, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1081,6 +1081,10 @@ PrefabInstance:
     - target: {fileID: 191275111462720923, guid: 39f9e702940b5c541b3467c61930c9be, type: 3}
       propertyPath: _text
       value: 
+      objectReference: {fileID: 1053562677}
+    - target: {fileID: 191275111462720923, guid: 39f9e702940b5c541b3467c61930c9be, type: 3}
+      propertyPath: _text2
+      value: 
       objectReference: {fileID: 1053562674}
     - target: {fileID: 3223639920162018739, guid: 39f9e702940b5c541b3467c61930c9be, type: 3}
       propertyPath: m_Text
@@ -1198,6 +1202,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7cb87c75b76e3e4c8918e7d572ae537, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!102 &1053562677 stripped
+TextMesh:
+  m_CorrespondingSourceObject: {fileID: 8309590517713083605, guid: 39f9e702940b5c541b3467c61930c9be, type: 3}
+  m_PrefabInstance: {fileID: 1053562672}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1060866369
 GameObject:
   m_ObjectHideFlags: 0
@@ -1628,6 +1637,10 @@ PrefabInstance:
     - target: {fileID: 8211772135912935621, guid: 33f8d26ac245e1c41975e14081c641a2, type: 3}
       propertyPath: _text
       value: 
+      objectReference: {fileID: 1197142997}
+    - target: {fileID: 8211772135912935621, guid: 33f8d26ac245e1c41975e14081c641a2, type: 3}
+      propertyPath: _text2
+      value: 
       objectReference: {fileID: 1717654877}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33f8d26ac245e1c41975e14081c641a2, type: 3}
@@ -1645,6 +1658,11 @@ MonoBehaviour:
 --- !u!4 &1197142996 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3477198190630383474, guid: 33f8d26ac245e1c41975e14081c641a2, type: 3}
+  m_PrefabInstance: {fileID: 1197142994}
+  m_PrefabAsset: {fileID: 0}
+--- !u!102 &1197142997 stripped
+TextMesh:
+  m_CorrespondingSourceObject: {fileID: 498030987, guid: 33f8d26ac245e1c41975e14081c641a2, type: 3}
   m_PrefabInstance: {fileID: 1197142994}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1325733658

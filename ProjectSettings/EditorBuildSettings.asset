@@ -35,4 +35,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/card-game/Scenes/QuestionMarks/QuestionMark.unity
     guid: 472273092b298dc408fb93f9b5c4cca5
+  - enabled: 1
+    path: Assets/card-game/Scenes/QuestionMarks/Shop.unity
+    guid: 9f813af14bad1dd42816482f087a699f
   m_configObjects: {}
