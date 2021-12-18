@@ -6,6 +6,7 @@ MonoImporter:
   defaultReferences:
   - _shopCardsRoot: {instanceID: 0}
   - _textMeshPrefab: {fileID: 2306951304856944239, guid: bd12bca70f78763468f2cd04979ff10e, type: 3}
+  - _buyClip: {fileID: 8300000, guid: 3782988ae63e01b4f97e13dbf9b45494, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

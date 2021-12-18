@@ -1668,22 +1668,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5558623812525329964, guid: 01152586d06b6a5439bf733d06cd0001, type: 3}
-      propertyPath: m_Size.x
-      value: 0.0689044
-      objectReference: {fileID: 0}
-    - target: {fileID: 5558623812525329964, guid: 01152586d06b6a5439bf733d06cd0001, type: 3}
-      propertyPath: m_Size.y
-      value: 0.009227358
-      objectReference: {fileID: 0}
-    - target: {fileID: 5558623812525329964, guid: 01152586d06b6a5439bf733d06cd0001, type: 3}
-      propertyPath: m_Size.z
-      value: 0.09734111
-      objectReference: {fileID: 0}
-    - target: {fileID: 5558623812525329964, guid: 01152586d06b6a5439bf733d06cd0001, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5558623812525329965, guid: 01152586d06b6a5439bf733d06cd0001, type: 3}
       propertyPath: _drawDeckTransform
       value: 

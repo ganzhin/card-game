@@ -3058,6 +3058,7 @@ MonoBehaviour:
   - {fileID: 2567611247051255169}
   - {fileID: 8536055454424439750}
   - {fileID: 2082260018227284938}
+  _chipsStack: {fileID: 8300000, guid: 3782988ae63e01b4f97e13dbf9b45494, type: 3}
 --- !u!65 &2838731944778342406
 BoxCollider:
   m_ObjectHideFlags: 0

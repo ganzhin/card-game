@@ -10,6 +10,8 @@ public class LargeChipBar : Bar
     public List<ChipBar> chipBars = new List<ChipBar>();
     private int fullBars = 0;
 
+    [SerializeField] private AudioClip _chipsStack;
+
     private void Start()
     {
         if (_text)
@@ -62,5 +64,6 @@ public class LargeChipBar : Bar
                 value -= chipBars[fullBars].GetCapacity();
             }
         }
+        SoundDesign.PlayOneShot(_chipsStack, transform);
     }
 }

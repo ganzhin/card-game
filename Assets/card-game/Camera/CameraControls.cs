@@ -54,3 +54,4 @@ public class CameraControls : MonoBehaviour
         Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, (Input.GetMouseButton(1) || (Board.board && !Board.board.PlayerTurn)) ? _zoomFov : _defaultFov, Time.deltaTime * _zoomSpeed);
     }
 }
+

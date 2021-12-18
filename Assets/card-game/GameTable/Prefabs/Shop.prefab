@@ -70,6 +70,7 @@ MonoBehaviour:
   - {fileID: 99754273585343365}
   - {fileID: 99754274209346886}
   _cardSpeed: 3
+  _cardDeal: {fileID: 8300000, guid: 6a35d196e5f883e4ca99ffab7c19a351, type: 3}
 --- !u!1 &99754273585343364
 GameObject:
   m_ObjectHideFlags: 0

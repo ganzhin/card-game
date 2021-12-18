@@ -15,6 +15,7 @@ public class Merchant : MonoBehaviour
     [SerializeField] private bool _one;
 
     [SerializeField] private TextMesh _textMeshPrefab;
+    [SerializeField] private AudioClip _buyClip;
 
     private IEnumerator Start()
     {
@@ -35,6 +36,7 @@ public class Merchant : MonoBehaviour
 
             card.gameObject.AddComponent<MerchantSellCard>().Price = _free ? 0 : price;
             card.gameObject.GetComponent<MerchantSellCard>().One = _one;
+            card.gameObject.GetComponent<MerchantSellCard>().BuyClip = _buyClip;
             text.text = _free ? "" : price.ToString();
             card.gameObject.AddComponent<Floating>();
 

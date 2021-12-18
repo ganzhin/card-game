@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Value: 0
+  _audioClip: {fileID: 8300000, guid: 34ba9fdce54465d4d99acda217b424bf, type: 3}
 --- !u!114 &2019070968549814041
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -21,6 +21,7 @@ public class Deck : MonoBehaviour
     [SerializeField] private bool _playersDeck = false;
 
     [SerializeField] private DeckVisual _deckVisual = new DeckVisual();
+    [SerializeField] private AudioClip _shuffleSound;
 
     private void Start()
     {
@@ -102,6 +103,9 @@ public class Deck : MonoBehaviour
 
     public void Shuffle()
     {
+        if (_draw.Count > 0)
+            SoundDesign.PlayOneShot(_shuffleSound, transform);
+
         _cards.AddRange(_draw);
         _draw.Clear();
 

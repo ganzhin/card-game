@@ -32,9 +32,9 @@ namespace CardEffects
             while (timer < Settings.LongCardPause)
             {
                 timer += Time.deltaTime;
-                if (timer <= Settings.LongCardPause / 2f)
+                if (timer <= Settings.LongCardPause / 3f)
                 {
-                    cardPosition += card.transform.up * (-4 * (timer * timer) + 4 * timer) * 0.001f;
+                    cardPosition += card.transform.up * (-4 * (timer * timer) + 4 * timer) * 0.002f;
                 }
                 else
                 {

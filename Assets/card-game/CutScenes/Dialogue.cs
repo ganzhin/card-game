@@ -78,7 +78,7 @@ public class Dialogue : MonoBehaviour
 
             if (letter != ' ')
             {
-                SoundDesign.SoundOneShot(_voiceClip);
+                SoundDesign.PlayOneShot(_voiceClip);
             }
 
             while (timer < (char.IsPunctuation(letter) ? _delay * 3 : _delay))

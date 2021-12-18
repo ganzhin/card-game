@@ -119,6 +119,7 @@ MonoBehaviour:
   _currentCards: []
   _cardSpawnPoint: {fileID: 8309590516781574821}
   _clickToContinueText: {fileID: 0}
+  _cardDeal: {fileID: 8300000, guid: 6a35d196e5f883e4ca99ffab7c19a351, type: 3}
 --- !u!1 &8309590517611516881
 GameObject:
   m_ObjectHideFlags: 0

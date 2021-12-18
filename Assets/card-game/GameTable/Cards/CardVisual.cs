@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using CardEffects;
+using UnityEngine;
 
 public class CardVisual : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class CardVisual : MonoBehaviour
 
     [SerializeField] private Texture _suitTexture;
     [SerializeField] private Texture _suitTextureMini;
+
+    [SerializeField] private GameObject _burningSuit;
 
     private AudioClip _sound;
     private AudioSource _audioSource;
@@ -38,6 +41,7 @@ public class CardVisual : MonoBehaviour
     internal void Init(int value)
     {
         _value = value;
+        _burningSuit.SetActive(GetComponent<Burn>());
         Refresh();
     }
 

@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Cards: []
-  _cardDistance: 0.042
+  _cardDistance: 0.05
   _cardThickness: 0.0025
   _highlightHeight: 0.03
   _handRadius: 0.14

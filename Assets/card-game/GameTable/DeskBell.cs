@@ -9,7 +9,9 @@ public class DeskBell : MonoBehaviour
         if (Board.board.PlayerTurn && Board.board.Cards.Count > 0)
         {
             Board.board.PlayCards();
-            SoundDesign.SoundOneShot(_sound);
+            SoundDesign.PlayOneShot(_sound);
         }
+        FindObjectOfType<DeckBlock>().gameObject.GetComponent<Collider>().enabled = true;
+
     }
 }

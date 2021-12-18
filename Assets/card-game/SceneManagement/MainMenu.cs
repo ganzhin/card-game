@@ -1,11 +1,14 @@
 using System.IO;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
+    [SerializeField] private Button _continueButton;
     private void Start()
     {
         Settings.LoadSettings();
+        _continueButton.interactable = File.Exists($"{Application.dataPath}/Save/deck.xml");
     }
     public void NewGame()
     {
@@ -27,7 +30,7 @@ public class MainMenu : MonoBehaviour
 
     public void Continue()
     {
-
+        SceneLoader.LoadScene("MapScene");
     }
 
     public void Tutorial()

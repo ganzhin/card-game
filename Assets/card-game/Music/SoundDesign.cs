@@ -52,7 +52,7 @@ public class SoundDesign : MonoBehaviour
         }
     }
 
-    public static void SoundOneShot(AudioClip clip, Transform soundTransform = null)
+    public static void PlayOneShot(AudioClip clip, Transform soundTransform = null)
     {
         if (!singleton) return;
 

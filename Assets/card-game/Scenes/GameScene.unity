@@ -2443,6 +2443,10 @@ PrefabInstance:
       propertyPath: _drawDeckTransform
       value: 
       objectReference: {fileID: 1554895261}
+    - target: {fileID: 5558623813540539946, guid: 01152586d06b6a5439bf733d06cd0001, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01152586d06b6a5439bf733d06cd0001, type: 3}
 --- !u!1001 &8309590517125543157

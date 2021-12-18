@@ -15,6 +15,7 @@ public class MyDeck : MonoBehaviour
     [SerializeField] private Vector3 _newPosition;
     private bool _mouseOver;
 
+    [SerializeField] private AudioClip audioClip;
     private void Start()
     {
         _startPosition = _showDeckTransform.position;
@@ -24,7 +25,7 @@ public class MyDeck : MonoBehaviour
 
     private void OnMouseDrag()
     {
-        _newPosition += Vector3.right * Input.GetAxis("Mouse X") * Time.deltaTime * .25f;
+        _newPosition += Vector3.right * Input.GetAxis("Mouse X") * Time.deltaTime * .4f;
     }
 
     private void OnMouseEnter()
@@ -60,11 +61,7 @@ public class MyDeck : MonoBehaviour
         _newPosition = _startPosition;
         _deckData = DeckData.Load();
 
-        /* if (FindObjectOfType<Deck>())
-        {
-
-        }
-        else */
+        if(_deckData.CardNames.Count > 0)
         {
             int row = 0;
             int column = 0;
@@ -87,6 +84,8 @@ public class MyDeck : MonoBehaviour
         }
         FindObjectOfType<MyDeckClick>().Show(_cards.Count);
 
+        SoundDesign.PlayOneShot(audioClip);
+
     }
 
     private void HideDeck()
@@ -98,6 +97,8 @@ public class MyDeck : MonoBehaviour
             Destroy(card.gameObject);
         }
         _cards.Clear();
+
+        SoundDesign.PlayOneShot(audioClip);
 
     }
 }

@@ -65,7 +65,7 @@ PrefabInstance:
       objectReference: {fileID: 2800000, guid: c9d659651b7fb964ba27023cb93db3f9, type: 3}
     - target: {fileID: 9184198111616542153, guid: e840a61bf0f2c99499d981d8741c1045, type: 3}
       propertyPath: _value
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9184198111616542153, guid: e840a61bf0f2c99499d981d8741c1045, type: 3}
       propertyPath: CurrentPrice
@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9211a9f35151b8944a0552fe2142781b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Value: 4
+  Value: 3
 --- !u!114 &2019070968549814041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa92ac46f366474439fc8f41a8a8aab9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Value: 4
+  Value: 3
 --- !u!114 &4764658676827760269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 233f8d423d8394b4a876a5075c2a3a19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Value: 4
+  Value: 3
 --- !u!114 &6373981835873697334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,3 +166,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Value: 0
+  _burnSound: {fileID: 8300000, guid: da3e7e4834570974fa1f849bd4c45de5, type: 3}

@@ -60,6 +60,7 @@ public class ChipMoney : MonoBehaviour
     private bool _click;
     private float _timer;
     [SerializeField] private bool _healEnabled = true;
+    [SerializeField] private AudioClip _chipStack;
 
     private void Start()
     {
@@ -183,7 +184,7 @@ public class ChipMoney : MonoBehaviour
         FindObjectOfType<Map>().UpdateBar();
 
         UpdateMoney();
-
+        SoundDesign.PlayOneShot(_chipStack, transform);
     }
 
     public void UpdateMoney()

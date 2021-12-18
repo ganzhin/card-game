@@ -140,6 +140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Value: 0
+  _burnSound: {fileID: 8300000, guid: da3e7e4834570974fa1f849bd4c45de5, type: 3}
 --- !u!114 &2019070968549814041
 MonoBehaviour:
   m_ObjectHideFlags: 0

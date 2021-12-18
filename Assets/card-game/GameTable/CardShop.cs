@@ -8,6 +8,7 @@ public class CardShop : MonoBehaviour
     [SerializeField] private Transform[] _places = new Transform[5];
     [SerializeField] private float _cardSpeed = 3;
 
+    [SerializeField] private AudioClip _cardDeal;
     private void Start()
     {
         PlaceCards();
@@ -52,7 +53,8 @@ public class CardShop : MonoBehaviour
                             if (Cards[i] == card)
                             {                      
                                 FindObjectOfType<Player>().TakeCardFromShop(card, this, i);
-                                
+                                SoundDesign.PlayOneShot(_cardDeal, transform);
+
                                 break;
                             }
                         }
@@ -79,6 +81,7 @@ public class CardShop : MonoBehaviour
                     Cards[i].IsOnBoard = true;
                     Cards[i].GetComponent<Collider>().enabled = true;
 
+                    SoundDesign.PlayOneShot(_cardDeal, transform);
                     yield return new WaitForSeconds(Settings.CardPause);
                 }
             }

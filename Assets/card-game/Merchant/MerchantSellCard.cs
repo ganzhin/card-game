@@ -4,11 +4,12 @@ using UnityEngine;
 public class MerchantSellCard : MonoBehaviour
 {
     public bool One;
-    
+    public AudioClip BuyClip;
+
     private int _price;
     private bool _sold;
     [SerializeField] private TextMesh _priceText;
-
+    
     public int Price
     {
         get => _price;
@@ -39,6 +40,7 @@ public class MerchantSellCard : MonoBehaviour
             }
 
             PickCard.SaveInDeck(GetComponent<Card>(), One);
+            SoundDesign.PlayOneShot(BuyClip, transform);
          }
     }
     private IEnumerator SellRoutine()

@@ -28,7 +28,7 @@ public class Card : MonoBehaviour
     private List<Material> _cardMaterials = new List<Material>();
 
     [SerializeField] private AudioClip _cardFluff;
-    [SerializeField] private AudioClip _cardPlay;
+    [SerializeField] private AudioClip _cardDeal;
 
     private void OnMouseDown()
     {
@@ -43,11 +43,6 @@ public class Card : MonoBehaviour
         {
             AddOnBoard();
         }
-    }
-
-    private void OnMouseEnter()
-    {
-        SoundDesign.SoundOneShot(_cardFluff, transform);
     }
 
     public void Initialize(Deck ownerDeck)
@@ -97,6 +92,7 @@ public class Card : MonoBehaviour
         {
             effect.Invoke(FindObjectOfType<Player>());
         }
+        SoundDesign.PlayOneShot(_cardDeal, transform);
     }
 
     public void RemoveEffect()

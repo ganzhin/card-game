@@ -3,7 +3,9 @@ guid: 6625b5f1d1854a449879faed8dceb52d
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - BuyClip: {fileID: 8300000, guid: 3782988ae63e01b4f97e13dbf9b45494, type: 3}
+  - _priceText: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

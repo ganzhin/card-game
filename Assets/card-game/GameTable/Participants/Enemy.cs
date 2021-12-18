@@ -13,7 +13,8 @@ public class Enemy : Participant
     [SerializeField] private Transform _cardSpawnPoint;
 
     [SerializeField] private Text _clickToContinueText;
-
+    [SerializeField] private AudioClip _cardDeal;
+    
     internal override void Start()
     {
         base.Start();
@@ -51,7 +52,7 @@ public class Enemy : Participant
             card.IsOnBoard = true;
 
             StartCoroutine(MoveCardToPosition(card, cardPlaces[i]));
-
+            SoundDesign.PlayOneShot(_cardDeal, card.transform);
             yield return new WaitForSeconds(Settings.CardPause);
         }
         yield return new WaitForSeconds(Settings.EnemyTurnPause);
@@ -71,6 +72,12 @@ public class Enemy : Participant
             yield return new WaitForSeconds(Settings.CardPause);
         }
 
+        foreach (var card in _currentCards)
+        {
+            card.AfterPlay();
+            yield return new WaitForSeconds(Settings.CardPause);
+        }
+
         yield return new WaitForSeconds(Settings.EnemyTurnPause);
 
         foreach (var card in _currentCards)
@@ -83,8 +90,8 @@ public class Enemy : Participant
         yield return new WaitForSeconds(Settings.EnemyTurnPause);
 
         Board.EndTurn();
-        
-        
+        FindObjectOfType<DeckBlock>().gameObject.GetComponent<Collider>().enabled = false;
+
     }
 
     public IEnumerator MoveCardToPosition(Card card, Vector3 position)
@@ -104,7 +111,7 @@ public class Enemy : Participant
     public override void Death()
     {
         Board.board.Win();
-        ChipMoney.Money += Random.Range(1, 6);
+        ChipMoney.Money += Random.Range(9, 17);
         ChipMoney.Health = FindObjectOfType<Player>()._health;
         ChipMoney.Floor++;
 

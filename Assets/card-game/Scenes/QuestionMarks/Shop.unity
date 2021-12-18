@@ -1136,84 +1136,6 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
---- !u!1 &805102466
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 805102467}
-  - component: {fileID: 805102468}
-  - component: {fileID: 805102469}
-  - component: {fileID: 805102470}
-  m_Layer: 0
-  m_Name: MyDeck
-  m_TagString: Untagged
-  m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &805102467
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 805102466}
-  m_LocalRotation: {x: 0.437419, y: -0, z: -0, w: 0.8992579}
-  m_LocalPosition: {x: -0.183, y: 0.5902, z: 0.1838}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 51.879, y: 0, z: 0}
---- !u!114 &805102468
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 805102466}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 543f93aef9cb32047af3ca2bfaf0010d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _power: 0.4
---- !u!114 &805102469
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 805102466}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a2b73b15a4699c42aeea902c878c71a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _showDeckTransform: {fileID: 805102467}
-  _columns: 1024
-  _width: 0.065
-  _height: 0.09
-  _startPosition: {x: 0, y: 0, z: 0}
-  _newPosition: {x: 0, y: 0, z: 0}
---- !u!65 &805102470
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 805102466}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 512, y: 0.11, z: 0.01}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &840884886
 GameObject:
   m_ObjectHideFlags: 0
@@ -1915,6 +1837,7 @@ MonoBehaviour:
   _text: {fileID: 363429495}
   _dialogue: {fileID: 374997483}
   _healEnabled: 0
+  _chipStack: {fileID: 0}
 --- !u!65 &1119029771
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2165,6 +2088,63 @@ MonoBehaviour:
   _cutScene: 0
   _cameraZoom: 27
   _voiceClip: {fileID: 8300000, guid: 79be50bd75493cc43ac2f0f83e43357e, type: 3}
+--- !u!1001 &1352710493
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6457826171399913056, guid: 5eb0404b6f2fc324aa9ac6809d3d730a, type: 3}
+      propertyPath: m_Name
+      value: MyDeck
+      objectReference: {fileID: 0}
+    - target: {fileID: 6457826171399913057, guid: 5eb0404b6f2fc324aa9ac6809d3d730a, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6457826171399913057, guid: 5eb0404b6f2fc324aa9ac6809d3d730a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.183
+      objectReference: {fileID: 0}
+    - target: {fileID: 6457826171399913057, guid: 5eb0404b6f2fc324aa9ac6809d3d730a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5902
+      objectReference: {fileID: 0}
+    - target: {fileID: 6457826171399913057, guid: 5eb0404b6f2fc324aa9ac6809d3d730a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.1838
+      objectReference: {fileID: 0}
+    - target: {fileID: 6457826171399913057, guid: 5eb0404b6f2fc324aa9ac6809d3d730a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.8992579
+      objectReference: {fileID: 0}
+    - target: {fileID: 6457826171399913057, guid: 5eb0404b6f2fc324aa9ac6809d3d730a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.437419
+      objectReference: {fileID: 0}
+    - target: {fileID: 6457826171399913057, guid: 5eb0404b6f2fc324aa9ac6809d3d730a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6457826171399913057, guid: 5eb0404b6f2fc324aa9ac6809d3d730a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6457826171399913057, guid: 5eb0404b6f2fc324aa9ac6809d3d730a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 51.879
+      objectReference: {fileID: 0}
+    - target: {fileID: 6457826171399913057, guid: 5eb0404b6f2fc324aa9ac6809d3d730a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6457826171399913057, guid: 5eb0404b6f2fc324aa9ac6809d3d730a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5eb0404b6f2fc324aa9ac6809d3d730a, type: 3}
 --- !u!1 &1364206908
 GameObject:
   m_ObjectHideFlags: 0
@@ -2665,7 +2645,7 @@ GameObject:
   - component: {fileID: 1656485402}
   - component: {fileID: 1656485401}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Merchant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2690,6 +2670,7 @@ MonoBehaviour:
   _free: 0
   _one: 0
   _textMeshPrefab: {fileID: 2306951304856944239, guid: bd12bca70f78763468f2cd04979ff10e, type: 3}
+  _buyClip: {fileID: 8300000, guid: 3782988ae63e01b4f97e13dbf9b45494, type: 3}
 --- !u!4 &1656485402
 Transform:
   m_ObjectHideFlags: 0
