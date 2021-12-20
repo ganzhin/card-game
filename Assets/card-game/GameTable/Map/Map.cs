@@ -5,7 +5,7 @@ public class Map : MonoBehaviour
 {
     [SerializeField] private LocationCard[] _locationCards;
 
-    [SerializeField] private SceneAsset[] _scenes;
+    [SerializeField] private string[] _scenes;
 
     [SerializeField] private int _successPercent;
     [SerializeField] private TextMesh _floorText;
@@ -25,7 +25,7 @@ public class Map : MonoBehaviour
                 locationType = LocationType.Battle;
 
             bool success = random <= _successPercent;
-            SceneAsset scene = success ? _scenes[(int)locationType] : _scenes[0];
+            string scene = success ? _scenes[(int)locationType] : _scenes[0];
 
             if (locationType == LocationType.Battle) success = false;
 

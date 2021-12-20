@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ChipsReward: 0
   MaxHealthReward: 0
-  _sceneToLoad: {fileID: 102900000, guid: 23937ef5baf939d4086b30d4a39ab99a, type: 3}
+  _sceneToLoad: PickCard

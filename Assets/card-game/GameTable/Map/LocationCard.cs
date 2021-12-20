@@ -9,7 +9,7 @@ public class LocationCard : MonoBehaviour
 {
     [SerializeField] private bool _quest;
     [SerializeField] private Dialogue _dialogue;
-    [SerializeField] private SceneAsset _sceneToLoad;
+    [SerializeField] private string _sceneToLoad;
 
     private bool _isHighlighted;
     [SerializeField] private float _cardLift;
@@ -26,7 +26,7 @@ public class LocationCard : MonoBehaviour
     [SerializeField] private TextMesh _locationText;
     [SerializeField] private Texture[] _cardFaces;
 
-    public void Initialize(LocationType type, bool success, SceneAsset scene)
+    public void Initialize(LocationType type, bool success, string scene)
     {
         _cardRenderer.material.mainTexture = _cardFaces[(int)type];
 
@@ -80,6 +80,6 @@ public class LocationCard : MonoBehaviour
 
     public void Apply()
     {
-        SceneLoader.LoadScene(_sceneToLoad.name);
+        SceneLoader.LoadScene(_sceneToLoad);
     }
 }

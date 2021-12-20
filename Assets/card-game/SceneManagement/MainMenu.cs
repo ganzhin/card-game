@@ -12,16 +12,16 @@ public class MainMenu : MonoBehaviour
     }
     public void NewGame()
     {
-        if (Settings.Data.FirstTutorialPassed)
-        {
+        //if (Settings.Data.FirstTutorialPassed)
+        //{
             SceneLoader.LoadScene("MapScene");
             ChipMoney.Clear();
-        }
-        else
-        {
-            SceneLoader.LoadScene(1);
+        //}
+        //else
+        //{
+        //    SceneLoader.LoadScene(1);
 
-        }
+        //}
         if (File.Exists($"{Application.dataPath}/Save/deck.xml"))
         {
             File.Delete($"{Application.dataPath}/Save/deck.xml");
