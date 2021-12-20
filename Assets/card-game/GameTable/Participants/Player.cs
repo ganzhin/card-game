@@ -89,9 +89,9 @@ public class Player : Participant
         newCard.Initialize();
         newCard.name = card.name;
         newCard.transform.parent = _deck.transform;
-        _deck.AddCard(card);
+        _deck.AddCard(newCard);
 
-        return card;
+        return newCard;
     }
 
     public void TakeCardFromDeck(bool cost = true)

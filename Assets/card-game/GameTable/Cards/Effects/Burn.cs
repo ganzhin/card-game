@@ -2,7 +2,6 @@ using UnityEngine;
 
 namespace CardEffects
 {
-    [System.Serializable]
     public class Burn : CardEffect
     {
         [SerializeField] private AudioClip _burnSound;

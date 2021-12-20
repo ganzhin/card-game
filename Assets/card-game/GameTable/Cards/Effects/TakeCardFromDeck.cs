@@ -2,11 +2,17 @@ using UnityEngine;
 
 namespace CardEffects
 {
-    [System.Serializable]
     public class TakeCardFromDeck : CardEffect
     {
+        public int Amount = 1;
+
         public override void Invoke(Participant target)
-        { TakeCard(); }
+        {
+            for (int i = 0; i < Amount; i++)
+            {
+                TakeCard();
+            }
+        }
 
         public void TakeCard()
         {

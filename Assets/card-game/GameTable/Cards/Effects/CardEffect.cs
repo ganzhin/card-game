@@ -3,11 +3,20 @@ using UnityEngine;
 
 namespace CardEffects
 {
-    [System.Serializable]
     public abstract class CardEffect : MonoBehaviour
     {
+        public delegate void EventDelegate();
+
+        public event EventDelegate OnCardDrop;
+        public event EventDelegate OnCardBurn;
+        public event EventDelegate OnCardPlace;
+        public event EventDelegate OnCardRemove;
+        public event EventDelegate OnAttack;
+        public event EventDelegate OnHeal;
+        public event EventDelegate OnDeckShuffle;
+
         public int Value;
-        internal int _buff;
+        [HideInInspector] public int Buff;
 
         internal Player Player => FindObjectOfType<Player>();
         internal Enemy Enemy => FindObjectOfType<Enemy>();
@@ -16,10 +25,12 @@ namespace CardEffects
         public abstract void Invoke(Participant target);
         public virtual void PlaceEffect(int value)
         {
+            OnCardPlace?.Invoke();
             Board.ChangeCurrentPrice(value);
         }
         public virtual void RemoveEffect(int value)
         {
+            OnCardRemove?.Invoke();
             Board.ChangeCurrentPrice(-value);
         }
         public virtual void AfterPlay() { }
@@ -52,6 +63,7 @@ namespace CardEffects
 
         public virtual void Burn(Card card)
         {
+            OnCardBurn?.Invoke();
             card.Burn();
             if (Player._hand.Cards.Contains(card))
             {
@@ -60,11 +72,13 @@ namespace CardEffects
         }
         public virtual void Drop(Card card)
         {
+            OnCardDrop?.Invoke();
             StartCoroutine(DropRoutine(card));
         }
 
         public virtual void ShuffleDeck()
         {
+            OnDeckShuffle?.Invoke();
             Player._deck.Shuffle();
         }
         public virtual int DropHand()
@@ -73,6 +87,7 @@ namespace CardEffects
             for (int i = Player._hand.Cards.Count - 1; i >= 0; i--)
             {
                 Card card = Player._hand.Cards[i];
+                OnCardDrop?.Invoke();
                 card.Drop();
                 if (Player._hand.Cards.Contains(card))
                 {
@@ -83,9 +98,11 @@ namespace CardEffects
         }
         public virtual void Attack(Participant target, int value)
         {
-            target.TakeDamage(value + _buff);
+            OnAttack?.Invoke();
 
-            _buff = 0;
+            target.TakeDamage(value + Buff);
+
+            Buff = 0;
         }
         public virtual void Heal(Participant target, int value)
         {
@@ -94,10 +111,11 @@ namespace CardEffects
             {
                 if (participant != target)
                 {
-                    participant.Heal(value + _buff);
+                    OnHeal?.Invoke();
+                    participant.Heal(value + Buff);
                 }
             }
-            _buff = 0;
+            Buff = 0;
         }
         public virtual void AddArmor(Participant target, int value)
         {
@@ -106,10 +124,10 @@ namespace CardEffects
             {
                 if (participant != target)
                 {
-                    participant.AddArmor(value + _buff);
+                    participant.AddArmor(value + Buff);
                 }
             }
-            _buff = 0;
+            Buff = 0;
         }
         public virtual int BurnHand()
         {
@@ -117,11 +135,7 @@ namespace CardEffects
             for (int i = Player._hand.Cards.Count - 1; i >= 0; i--)
             {
                 Card card = Player._hand.Cards[i];
-                card.Burn();
-                if (Player._hand.Cards.Contains(card))
-                {
-                    Player._hand.Cards.Remove(card);
-                }
+                Burn(card);
             }
             return ret;
         }

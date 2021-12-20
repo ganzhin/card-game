@@ -2,7 +2,6 @@ using UnityEngine;
 
 namespace CardEffects
 {
-    [System.Serializable]
     public class AddCardInDeck : CardEffect
     {
         public Card CardPrefab;

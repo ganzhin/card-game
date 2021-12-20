@@ -2,7 +2,6 @@ using UnityEngine;
 
 namespace CardEffects
 {
-    [System.Serializable]
     public class Heal : CardEffect
     {
         public override void Invoke(Participant target)

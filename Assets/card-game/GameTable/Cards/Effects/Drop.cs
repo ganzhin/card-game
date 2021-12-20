@@ -2,7 +2,6 @@ using UnityEngine;
 
 namespace CardEffects
 {
-    [System.Serializable]
     public class Drop : CardEffect
     {
         [SerializeField] private AudioClip _audioClip;

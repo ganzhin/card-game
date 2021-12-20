@@ -168,4 +168,9 @@ public class Board : MonoBehaviour
     {
         _victory = true;
     }
+
+    public int GetCurrentPrice()
+    {
+        return _currentEnergyPrice;
+    }
 }
