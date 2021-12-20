@@ -1,9 +1,19 @@
+using UnityEditor;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New QuestionMark Option", menuName = "QuestionMark")]
 public class QuestionMarkOption : ScriptableObject
 {
-    public int ChipsReward;
-    public Card[] CardsReward;
-    public bool Fight;
+    public int ChipsReward = 12;
+    public int MaxHealthReward = 1;
+
+    public SceneAsset _sceneToLoad;
+
+    public void Apply()
+    {
+        ChipMoney.Money += ChipsReward;
+        ChipMoney.MaxHealth += MaxHealthReward;
+
+        SceneLoader.LoadScene(_sceneToLoad.name);
+    }
 }

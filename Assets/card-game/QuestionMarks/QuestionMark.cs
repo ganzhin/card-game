@@ -14,13 +14,6 @@ public class QuestionMark : MonoBehaviour
     {
         ChipMoney.Floor++;
 
-        if (_choices[index].Fight)
-        {
-            SceneLoader.LoadScene("GameScene");
-        }
-        else
-        {
-            SceneLoader.LoadScene("MapScene");
-        }
+        _choices[index].Apply(); ;
     }
 }

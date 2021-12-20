@@ -576,13 +576,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 3
     m_MaxSize: 64
-    m_Alignment: 4
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: "\u041C\u043E\u043B\u0438\u0442\u044C\u0441\u044F\n(MAX HP +2)"
 --- !u!222 &218754141
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1420,13 +1420,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 3
     m_MaxSize: 64
-    m_Alignment: 4
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: "\u041E\u0433\u0440\u0430\u0431\u0438\u0442\u044C\n(+ 10 \u0444\u0438\u0448\u0435\u043A)"
 --- !u!222 &787579242
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2089,10 +2089,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36c142025030cc6479fd1725799e99ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _amount: 20
   _chipPrefab: {fileID: 978942399}
   _randomPositionModifier: 0.01
   _spawnHeight: 0.3
+  _text: {fileID: 0}
+  _dialogue: {fileID: 0}
+  _healEnabled: 1
+  _chipStack: {fileID: 0}
 --- !u!1 &1151159337
 GameObject:
   m_ObjectHideFlags: 0
@@ -2342,13 +2345,14 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 3
     m_MaxSize: 64
-    m_Alignment: 4
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: "\u0418\u0441\u043A\u0430\u0442\u044C\n(\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C
+    \u043A\u0430\u0440\u0442\u0443)"
 --- !u!222 &1217796018
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3124,14 +3128,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _strings:
-  - questionMark text here 1.
-  - questionMark text here 1.
+  - "\u0421\u0440\u0430\u0437\u0443 \u0437\u0430 \u0434\u0432\u0435\u0440\u044C\u044E
+    \u0432\u044B \u0432\u0441\u0442\u0440\u0435\u0442\u0438\u043B\u0438 \u0447\u0442\u043E-\u0442\u043E
+    \u043D\u0435\u043E\u0431\u044B\u0447\u043D\u043E\u0435."
+  - "\u041F\u0435\u0440\u0435\u0434 \u0432\u0430\u043C\u0438 \u043D\u0430\u0445\u043E\u0434\u0438\u0442\u0441\u044F
+    \u043D\u0435\u0431\u043E\u043B\u044C\u0448\u043E\u0439 \u0430\u043B\u0442\u0430\u0440\u044C."
   - "\u0421\u0434\u0435\u043B\u0430\u0439 \u0432\u044B\u0431\u043E\u0440..."
   - 
   _choices:
   - {fileID: 11400000, guid: 3552206b49e0a2842b0a7f66a00f5cc4, type: 2}
-  - {fileID: 11400000, guid: 3552206b49e0a2842b0a7f66a00f5cc4, type: 2}
-  - {fileID: 11400000, guid: 3552206b49e0a2842b0a7f66a00f5cc4, type: 2}
+  - {fileID: 11400000, guid: b0b5fc72fefe92f40a22af01fe16f006, type: 2}
+  - {fileID: 11400000, guid: ffd8b0d98c1c16e4db3b44e717ff8e86, type: 2}
 --- !u!1001 &1960107818
 PrefabInstance:
   m_ObjectHideFlags: 0

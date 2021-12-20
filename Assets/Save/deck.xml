@@ -1,29 +1,19 @@
 <?xml version="1.0"?>
 <DeckData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <CardNames>
-    <string>4 of branches</string>
-    <string>Fire Bolt</string>
-    <string>4 of branches</string>
-    <string>Fire Bolt</string>
-    <string>4 of branches</string>
-    <string>Fire Bolt</string>
-    <string>4 of branches</string>
-    <string>Fire Bolt</string>
-    <string>4 of branches</string>
-    <string>Fire Bolt</string>
-    <string>Fire Bolt</string>
-    <string>4 of branches</string>
-    <string>Fire Bolt</string>
-    <string>4 of branches</string>
-    <string>Fire Bolt</string>
-    <string>4 of branches</string>
-    <string>Fire Bolt</string>
-    <string>4 of branches</string>
-    <string>Fire Bolt</string>
-    <string>Arrow</string>
-    <string>Stuff</string>
-    <string>3 of knives</string>
+    <string>2 of potions</string>
+    <string>3 of potions</string>
     <string>2 of knives</string>
-    <string>Taunt</string>
+    <string>2 of knives</string>
+    <string>2 of shields</string>
+    <string>2 of branches</string>
+    <string>3 of knives</string>
+    <string>3 of knives</string>
+    <string>3 of shields</string>
+    <string>3 of branches</string>
+    <string>4 of knives</string>
+    <string>4 of knives</string>
+    <string>4 of shields</string>
+    <string>4 of branches</string>
   </CardNames>
 </DeckData>

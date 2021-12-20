@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 41cffbe9eef6189429c12b012a81adff, type: 3}
-  m_Name: New QuestionMark Option
+  m_Name: AddCard
   m_EditorClassIdentifier: 
   ChipsReward: 0
-  CardsReward: []
-  Fight: 0
+  MaxHealthReward: 0
+  _sceneToLoad: {fileID: 102900000, guid: 23937ef5baf939d4086b30d4a39ab99a, type: 3}
