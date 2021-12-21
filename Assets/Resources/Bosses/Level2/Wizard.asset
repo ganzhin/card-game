@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10ec4992b26567a46840004047d93774, type: 3}
+  m_Name: Wizard
+  m_EditorClassIdentifier: 
+  Name: Wizard
+  MaxHealth: 25
+  TurnsVariants:
+  - Cards:
+    - {fileID: 4071144985571272715, guid: 41e98c684f6507b4c97d9e463bc90fd4, type: 3}
+    - {fileID: 4071144985571272715, guid: 49eb789778a91f244b93dcc4431aaf93, type: 3}
+  - Cards:
+    - {fileID: 4071144985571272715, guid: 9643cba84742294488522b6e4c844d00, type: 3}
+  - Cards:
+    - {fileID: 4071144985571272715, guid: 46201c12cfe03cb46aee7938ad74c82e, type: 3}
+    - {fileID: 4071144985571272715, guid: 46201c12cfe03cb46aee7938ad74c82e, type: 3}
+  - Cards:
+    - {fileID: 4071144985571272715, guid: cadf4e7dc00095d4d94e4150865bf032, type: 3}
+    - {fileID: 4071144985571272715, guid: cadf4e7dc00095d4d94e4150865bf032, type: 3}
+    - {fileID: 4071144985571272715, guid: cadf4e7dc00095d4d94e4150865bf032, type: 3}
+  - Cards:
+    - {fileID: 4071144985571272715, guid: cadf4e7dc00095d4d94e4150865bf032, type: 3}
+  - Cards:
+    - {fileID: 4071144985571272715, guid: cadf4e7dc00095d4d94e4150865bf032, type: 3}
+    - {fileID: 4071144985571272715, guid: 49eb789778a91f244b93dcc4431aaf93, type: 3}
+    - {fileID: 4071144985571272715, guid: 41e98c684f6507b4c97d9e463bc90fd4, type: 3}
+  - Cards:
+    - {fileID: 4071144985571272715, guid: cadf4e7dc00095d4d94e4150865bf032, type: 3}
+  - Cards:
+    - {fileID: 4071144985571272715, guid: 462d7e8830014054cab927ca61a7bdcb, type: 3}
+  - Cards:
+    - {fileID: 4071144985571272715, guid: de0a3e086c1bc454fbb9adad0eeca344, type: 3}

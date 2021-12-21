@@ -88,6 +88,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9184198111616542153, guid: e840a61bf0f2c99499d981d8741c1045, type: 3}
+      propertyPath: _onPlay.Array.data[0]
+      value: 
+      objectReference: {fileID: -4245055321650478546}
+    - target: {fileID: 9184198111616542153, guid: e840a61bf0f2c99499d981d8741c1045, type: 3}
       propertyPath: _onPlace.Array.data[0]
       value: 
       objectReference: {fileID: -6697245057422635044}
@@ -123,6 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Value: 1
+  Buff: 0
 --- !u!114 &-5525447633093720594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,6 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Value: 0
+  Buff: 0
   _burnSound: {fileID: 8300000, guid: da3e7e4834570974fa1f849bd4c45de5, type: 3}
 --- !u!114 &-4245055321650478546
 MonoBehaviour:
@@ -150,6 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Value: 1
+  Buff: 0
 --- !u!114 &2019070968549814041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,3 +170,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Value: 1
+  Buff: 0

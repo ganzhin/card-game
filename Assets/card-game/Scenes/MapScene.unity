@@ -1961,7 +1961,8 @@ MonoBehaviour:
   - GameScene
   - Shop
   - QuestionMark
-  _successPercent: 75
+  _successPercent: 55
+  _shopSuccessPercent: 80
   _floorText: {fileID: 978114363}
   _playerHealth: {fileID: 1728282053}
   _playerHealthText: {fileID: 2145277315}

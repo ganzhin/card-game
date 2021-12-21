@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Enemy : Participant
 {
-    [SerializeField] private List<Turn> _turnsVariants;
+    [SerializeField] private EnemyData _enemyData;
     [SerializeField] private Transform _cardsPlace;
 
     [SerializeField] private float _cardWidth;
@@ -14,11 +14,21 @@ public class Enemy : Participant
 
     [SerializeField] private Text _clickToContinueText;
     [SerializeField] private AudioClip _cardDeal;
-    
+
+    [SerializeField] private TextMesh _nameText;
+
     internal override void Start()
     {
+        var path = $"{(ChipMoney.Floor % 15f == 0 && ChipMoney.Floor > 0 ? "Bosses" : "Enemies")}/Level{ChipMoney.Floor / 15}";
+
+        _enemyData = Resources.LoadAll<EnemyData>(path)[Random.Range(0, Resources.LoadAll<EnemyData>(path).Length)];
+        _maxHealth = _enemyData.MaxHealth + Random.Range(-3, 4);
+        _health = _maxHealth;
+        _nameText.text = _enemyData.Name;
+
         base.Start();
-        foreach (var turn in _turnsVariants)
+
+        foreach (var turn in _enemyData.TurnsVariants)
         {
             for (int i = 0; i < turn.Cards.Length; i++)
             {
@@ -32,23 +42,23 @@ public class Enemy : Participant
 
     public virtual void MakeMoves()
     {
-        StartCoroutine(PlaceCards(Random.Range(0, _turnsVariants.Count)));
+        StartCoroutine(PlaceCards(Random.Range(0, _enemyData.TurnsVariants.Count)));
     }
 
     public IEnumerator PlaceCards(int turnIndex)
     {
         yield return new WaitForSeconds(Settings.EnemyTurnPause);
 
-        var cardPlaces = new Vector3[_turnsVariants[turnIndex].Cards.Length];
+        var cardPlaces = new Vector3[_enemyData.TurnsVariants[turnIndex].Cards.Length];
         for (int i = 0; i < cardPlaces.Length; i++)
         {
             cardPlaces[i] = _cardsPlace.position;
             cardPlaces[i].x = (-(cardPlaces.Length * _cardWidth) / 2) + i * _cardWidth + _cardWidth / 2f;
         }
 
-        for (int i = 0; i < _turnsVariants[turnIndex].Cards.Length; i++)
+        for (int i = 0; i < _enemyData.TurnsVariants[turnIndex].Cards.Length; i++)
         {
-            Card card = _turnsVariants[turnIndex].Cards[i];
+            Card card = _enemyData.TurnsVariants[turnIndex].Cards[i];
             card.IsOnBoard = true;
 
             StartCoroutine(MoveCardToPosition(card, cardPlaces[i]));
@@ -57,7 +67,7 @@ public class Enemy : Participant
         }
         yield return new WaitForSeconds(Settings.EnemyTurnPause);
 
-        _currentCards = _turnsVariants[turnIndex].Cards;
+        _currentCards = _enemyData.TurnsVariants[turnIndex].Cards;
 
         _clickToContinueText.gameObject.SetActive(true);
         while (!Input.GetMouseButton(0) && !Input.GetKey(KeyCode.Space))

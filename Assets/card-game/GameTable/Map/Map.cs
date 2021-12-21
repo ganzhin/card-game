@@ -8,6 +8,7 @@ public class Map : MonoBehaviour
     [SerializeField] private string[] _scenes;
 
     [SerializeField] private int _successPercent;
+    [SerializeField] private int _shopSuccessPercent;
     [SerializeField] private TextMesh _floorText;
 
     [SerializeField] private Bar _playerHealth;
@@ -21,10 +22,23 @@ public class Map : MonoBehaviour
             int random = Random.Range(0, 101);
 
             LocationType locationType = (LocationType)Random.Range(0, System.Enum.GetNames(typeof(LocationType)).Length);
-            if (ChipMoney.Floor == 0)
+
+            if (ChipMoney.Floor == 0 || ChipMoney.Floor % 15f == 0)
                 locationType = LocationType.Battle;
 
-            bool success = random <= _successPercent;
+            bool success;
+
+            if (locationType == LocationType.Shop)
+            {
+                success = random <= _shopSuccessPercent;
+
+            }
+            else
+            {
+                success = random <= _successPercent;
+
+            }
+
             string scene = success ? _scenes[(int)locationType] : _scenes[0];
 
             if (locationType == LocationType.Battle) success = false;
@@ -34,6 +48,11 @@ public class Map : MonoBehaviour
         }
 
         UpdateBar();
+
+        if (ChipMoney.Floor == 46)
+        {
+            SceneLoader.LoadScene("UnlocksScene");
+        }
     }
 
     public void UpdateBar()

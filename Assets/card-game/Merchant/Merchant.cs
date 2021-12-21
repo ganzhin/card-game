@@ -49,5 +49,6 @@ public class Merchant : MonoBehaviour
     public void LoadMap()
     {
         SceneLoader.LoadScene("MapScene");
+        ChipMoney.Floor++;
     }
 }

@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10ec4992b26567a46840004047d93774, type: 3}
+  m_Name: Archer
+  m_EditorClassIdentifier: 
+  Name: Archer
+  MaxHealth: 24
+  TurnsVariants:
+  - Cards:
+    - {fileID: 4071144985571272715, guid: cadf4e7dc00095d4d94e4150865bf032, type: 3}
+    - {fileID: 4071144985571272715, guid: beb8bbdf26ee9404faabc3005efdecc2, type: 3}
+  - Cards:
+    - {fileID: 4071144985571272715, guid: afc3b571e1c7d3249997cfd5dd12c683, type: 3}
+    - {fileID: 4071144985571272715, guid: beb8bbdf26ee9404faabc3005efdecc2, type: 3}
+  - Cards:
+    - {fileID: 4071144985571272715, guid: beb8bbdf26ee9404faabc3005efdecc2, type: 3}
+    - {fileID: 4071144985571272715, guid: beb8bbdf26ee9404faabc3005efdecc2, type: 3}
+    - {fileID: 4071144985571272715, guid: afc3b571e1c7d3249997cfd5dd12c683, type: 3}
+  - Cards:
+    - {fileID: 4071144985571272715, guid: afc3b571e1c7d3249997cfd5dd12c683, type: 3}
+  - Cards:
+    - {fileID: 4071144985571272715, guid: beb8bbdf26ee9404faabc3005efdecc2, type: 3}
+    - {fileID: 4071144985571272715, guid: beb8bbdf26ee9404faabc3005efdecc2, type: 3}
+  - Cards:
+    - {fileID: 4071144985571272715, guid: beb8bbdf26ee9404faabc3005efdecc2, type: 3}
+    - {fileID: 4071144985571272715, guid: beb8bbdf26ee9404faabc3005efdecc2, type: 3}
+    - {fileID: 4071144985571272715, guid: beb8bbdf26ee9404faabc3005efdecc2, type: 3}
+    - {fileID: 4071144985571272715, guid: beb8bbdf26ee9404faabc3005efdecc2, type: 3}
+    - {fileID: 4071144985571272715, guid: beb8bbdf26ee9404faabc3005efdecc2, type: 3}
+  - Cards:
+    - {fileID: 4071144985571272715, guid: beb8bbdf26ee9404faabc3005efdecc2, type: 3}
+    - {fileID: 4071144985571272715, guid: 423b0668b634de042a57be62f050ddab, type: 3}
+    - {fileID: 4071144985571272715, guid: 49eb789778a91f244b93dcc4431aaf93, type: 3}
+    - {fileID: 4071144985571272715, guid: afc3b571e1c7d3249997cfd5dd12c683, type: 3}
