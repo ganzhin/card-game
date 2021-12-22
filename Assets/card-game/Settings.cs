@@ -5,8 +5,9 @@ using UnityEngine.Rendering;
 
 public static class Settings
 {
-    public static readonly float CardPause = .4f;
-    public static readonly float EnemyTurnPause = 1.25f;
+    public static readonly float CardPause = .35f;
+    public static readonly float EnemyTurnPause = 0.6f;
+    public static readonly float CardSpeed = 6;
 
     public static float LongCardPause = .5f;
 

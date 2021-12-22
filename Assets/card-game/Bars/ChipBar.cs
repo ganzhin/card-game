@@ -28,11 +28,11 @@ public class ChipBar : Bar
             {
                 if (i < _value)
                 {
-                    _valueTransforms[i].position = Vector3.Lerp(_valueTransforms[i].position, _valuePositions[i], Time.fixedDeltaTime * 2);
+                    _valueTransforms[i].position = Vector3.Lerp(_valueTransforms[i].position, _valuePositions[i], Time.deltaTime * 2);
                 }
                 else
                 {
-                    _valueTransforms[i].position = Vector3.Lerp(_valueTransforms[i].position, _valuePositions[i] + Vector3.up, Time.fixedDeltaTime);
+                    _valueTransforms[i].position = Vector3.Lerp(_valueTransforms[i].position, _valuePositions[i] + Vector3.up, Time.deltaTime);
 
                 }
             }

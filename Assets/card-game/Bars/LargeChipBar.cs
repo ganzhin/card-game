@@ -14,17 +14,15 @@ public class LargeChipBar : Bar
 
     private void Start()
     {
-        if (_text)
-        {
-            _text.color = Color.clear;
-        }
+        OnMouseExit();
     }
 
     private IEnumerator OnMouseEnter()
     {
         while (_text != null && _text.color != Color.white)
         {
-            _text.color = Color.Lerp(_text.color, Color.white, .2f);
+            _text.transform.localScale = Vector3.Lerp(_text.transform.localScale, Vector3.one, .1f);
+            _text.color = Color.Lerp(_text.color, Color.white, .1f);
             yield return null;
         }
 
@@ -32,8 +30,12 @@ public class LargeChipBar : Bar
     private void OnMouseExit()
     {
         StopCoroutine(nameof(OnMouseEnter));
+
         if (_text)
-            _text.color = Color.clear;
+        {
+            _text.color = Color.Lerp(Color.clear, Color.white, .6f);
+            _text.transform.localScale = Vector3.one * .85f;
+        }
     }
 
     public override void SetValue(int value)

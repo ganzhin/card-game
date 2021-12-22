@@ -30,7 +30,7 @@ public class CameraControls : MonoBehaviour
 
             _pitch = Mathf.Clamp(_pitch, _pitchMinimum, _pitchMaximum);
             _yaw = Mathf.Clamp(_yaw, _yawMinimum, _yawMaximum);
-            transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.Euler(_pitch, _yaw, 0), Time.fixedDeltaTime * _speed);
+            transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.Euler(_pitch, _yaw, 0), Time.deltaTime * _speed);
 
             RaycastHit hit;
             if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit))
@@ -46,7 +46,7 @@ public class CameraControls : MonoBehaviour
         {
             _angle = (!Board.board || Board.board.PlayerTurn) ? 50 : 43;
 
-            transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.Euler(_angle, 0, 0), Time.fixedDeltaTime * _speed);
+            transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.Euler(_angle, 0, 0), Time.deltaTime * _speed);
             _pitch = Mathf.Lerp(_pitch, 50, Time.deltaTime);
             _yaw = Mathf.Lerp(_yaw, 0, Time.deltaTime);
         }

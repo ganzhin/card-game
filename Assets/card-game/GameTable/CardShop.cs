@@ -20,8 +20,8 @@ public class CardShop : MonoBehaviour
         {
             if (Cards[i] != null)
             {
-                Cards[i].transform.position = Vector3.Lerp(Cards[i].transform.position, _places[i].transform.position, Time.fixedDeltaTime * _cardSpeed);
-                Cards[i].transform.rotation = Quaternion.Lerp(Cards[i].transform.rotation, _places[i].transform.rotation, Time.fixedDeltaTime * _cardSpeed);
+                Cards[i].transform.position = Vector3.Lerp(Cards[i].transform.position, _places[i].transform.position, Time.deltaTime * _cardSpeed);
+                Cards[i].transform.rotation = Quaternion.Lerp(Cards[i].transform.rotation, _places[i].transform.rotation, Time.deltaTime * _cardSpeed);
             }
         }
 

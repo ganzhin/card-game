@@ -139,16 +139,16 @@ public class Card : MonoBehaviour
         {
             timer += Time.deltaTime;
             _faceRenderer.material.SetFloat("_value", timer);
-            if (timer > .8f)
-            {
-                transform.localPosition = Vector3.Lerp(transform.localPosition, transform.localPosition + Vector3.down * .01f, Time.deltaTime);
-            }
             foreach (var renderer in GetComponentsInChildren<Renderer>())
             {
                 if (renderer.material.HasColor("_Color"))
                 {
                     renderer.material.color = Color.Lerp(renderer.material.color, Color.clear, timer / 1.2f);
                 }
+            }
+            foreach (var textMesh in GetComponentsInChildren<TextMesh>())
+            {
+                textMesh.color = Color.Lerp(textMesh.color, Color.clear, timer / 1.2f);
             }
 
             yield return null;
@@ -169,6 +169,10 @@ public class Card : MonoBehaviour
             if (GetComponentsInChildren<Renderer>()[i].material.HasColor("_Color"))
             {
                 GetComponentsInChildren<Renderer>()[i].material.color = Color.white;
+            }
+            foreach (var textMesh in GetComponentsInChildren<TextMesh>())
+            {
+                textMesh.color = Color.black;
             }
         }
     }

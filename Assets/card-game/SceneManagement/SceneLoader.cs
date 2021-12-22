@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public static class SceneLoader
 {
     [SerializeField] public static SceneTransitionImage TransitionImage;
-    private static float _transitionTime = 1.25f;
+    private static float _transitionTime = .5f;
     private static bool _isPlaying = false;
 
     public static void LoadScene(int buildIndex)

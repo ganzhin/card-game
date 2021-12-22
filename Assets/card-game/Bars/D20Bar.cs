@@ -21,7 +21,7 @@ public class D20Bar : Bar
     {
         if (_value < 21 && _value > 0)
         {
-            transform.position = Vector3.Lerp(transform.position, _startPosition, Time.fixedDeltaTime);
+            transform.position = Vector3.Lerp(transform.position, _startPosition, Time.deltaTime);
 
             _timer += Time.deltaTime;
 
@@ -35,7 +35,7 @@ public class D20Bar : Bar
         }
         else
         {
-            transform.position = Vector3.Lerp(transform.position, _startPosition + Vector3.up, Time.fixedDeltaTime);
+            transform.position = Vector3.Lerp(transform.position, _startPosition + Vector3.up, Time.deltaTime);
         }
     }
     

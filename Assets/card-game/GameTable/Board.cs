@@ -32,8 +32,8 @@ public class Board : MonoBehaviour
         {
             if (Cards[i] != null)
             {
-                Cards[i].transform.position = Vector3.Lerp(Cards[i].transform.position, places[i].transform.position, Time.fixedDeltaTime * 4);
-                Cards[i].transform.rotation = Quaternion.Lerp(Cards[i].transform.rotation, places[i].transform.rotation, Time.fixedDeltaTime * 4);
+                Cards[i].transform.position = Vector3.Lerp(Cards[i].transform.position, places[i].transform.position, Time.deltaTime * Settings.CardSpeed);
+                Cards[i].transform.rotation = Quaternion.Lerp(Cards[i].transform.rotation, places[i].transform.rotation, Time.deltaTime * Settings.CardSpeed);
             }
         }
 

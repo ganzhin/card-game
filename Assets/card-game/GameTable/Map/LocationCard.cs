@@ -47,16 +47,16 @@ public class LocationCard : MonoBehaviour
 
         if (_opened)
         {
-            transform.position = Vector3.Lerp(transform.position, Camera.main.transform.position + Camera.main.transform.forward * .2f, Time.fixedDeltaTime);
-            transform.up = Vector3.Lerp(transform.up, Camera.main.transform.forward, Time.fixedDeltaTime);
+            transform.position = Vector3.Lerp(transform.position, Camera.main.transform.position + Camera.main.transform.forward * .2f, Time.deltaTime * Settings.CardSpeed);
+            transform.up = Vector3.Lerp(transform.up, Camera.main.transform.forward, Time.deltaTime * Settings.CardSpeed);
             FindObjectOfType<Volume>().profile.TryGet<DepthOfField>(out var dof);
-            dof.focalLength.value = Mathf.Lerp(dof.focalLength.value, 32, Time.fixedDeltaTime);
+            dof.focalLength.value = Mathf.Lerp(dof.focalLength.value, 32, Time.deltaTime);
             
         }
         else
         {
-            transform.position = Vector3.Lerp(transform.position, lift, Time.fixedDeltaTime);
-            transform.rotation = Quaternion.Lerp(transform.rotation, angle, Time.fixedDeltaTime);
+            transform.position = Vector3.Lerp(transform.position, lift, Time.deltaTime * Settings.CardSpeed);
+            transform.rotation = Quaternion.Lerp(transform.rotation, angle, Time.deltaTime * Settings.CardSpeed);
         }
     }
 

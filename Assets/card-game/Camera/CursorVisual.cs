@@ -14,7 +14,7 @@ public class CursorVisual : MonoBehaviour
             Vector3.Lerp(
                 transform.position,
                 hit.point + Vector3.up * _lightHeight,
-                Time.fixedDeltaTime * _followSpeed
+                Time.deltaTime * _followSpeed
                 );
         }
     }

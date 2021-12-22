@@ -52,19 +52,19 @@ public class Deck : MonoBehaviour
         Vector3 lift = Vector3.up * (_isHighlighted ? _cardLift : 0);
         var angle = Quaternion.Euler(90, _cardLiftYAngle * (_isHighlighted ? 1 : 0), 0);
 
-        _topCard.localPosition = Vector3.Lerp(_topCard.localPosition, _topCardPosition + lift, Time.fixedDeltaTime * 4);
-        _topCard.localRotation = Quaternion.Lerp(_topCard.localRotation, angle, Time.fixedDeltaTime * 4);
+        _topCard.localPosition = Vector3.Lerp(_topCard.localPosition, _topCardPosition + lift, Time.deltaTime * Settings.CardSpeed);
+        _topCard.localRotation = Quaternion.Lerp(_topCard.localRotation, angle, Time.deltaTime * Settings.CardSpeed);
 
         foreach (var card in _draw)
         {
-            card.transform.position = Vector3.Lerp(card.transform.position, _drawDeckTransform.position, Time.fixedDeltaTime);
-            card.transform.rotation = Quaternion.Lerp(card.transform.rotation, _drawDeckTransform.rotation, Time.fixedDeltaTime * 4);
+            card.transform.position = Vector3.Lerp(card.transform.position, _drawDeckTransform.position, Time.deltaTime * Settings.CardSpeed);
+            card.transform.rotation = Quaternion.Lerp(card.transform.rotation, _drawDeckTransform.rotation, Time.deltaTime * Settings.CardSpeed);
         }
 
         foreach (var card in _cards)
         {
-            card.transform.position = Vector3.Lerp(card.transform.position, _middleCards.position, Time.fixedDeltaTime);
-            card.transform.localRotation = Quaternion.Lerp(card.transform.localRotation, Quaternion.Euler(-90, 0, 0), Time.fixedDeltaTime * 4);
+            card.transform.position = Vector3.Lerp(card.transform.position, _middleCards.position, Time.deltaTime * Settings.CardSpeed);
+            card.transform.localRotation = Quaternion.Lerp(card.transform.localRotation, Quaternion.Euler(-90, 0, 0), Time.deltaTime * Settings.CardSpeed);
 
         }
 

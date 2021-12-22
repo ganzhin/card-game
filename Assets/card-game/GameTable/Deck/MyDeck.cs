@@ -25,7 +25,7 @@ public class MyDeck : MonoBehaviour
 
     private void OnMouseDrag()
     {
-        _newPosition += Vector3.right * Input.GetAxis("Mouse X") * Time.deltaTime * .4f;
+        _newPosition += Vector3.right * Input.GetAxis("Mouse X") * Time.deltaTime * .75f;
     }
 
     private void OnMouseEnter()

@@ -65,7 +65,7 @@ public class ChipMoney : MonoBehaviour
     {
         Load();
         StartCoroutine(SpawnChipsRoutine());
-        if (_text) _text.color = Color.clear;
+        OnMouseExit();
     }
 
     private void OnMouseDown()
@@ -84,17 +84,21 @@ public class ChipMoney : MonoBehaviour
     {
         while (_text != null && _text.color != Color.white)
         {
-            _text.text = _money.ToString();
-            _text.color = Color.Lerp(_text.color, Color.white, .2f);
+            _text.transform.localScale = Vector3.Lerp(_text.transform.localScale, Vector3.one, .1f);
+            _text.color = Color.Lerp(_text.color, Color.white, .1f);
             yield return null;
         }
-
+        UpdateMoney();
     }
     private void OnMouseExit()
     {
         StopCoroutine(nameof(OnMouseEnter));
+
         if (_text)
-            _text.color = Color.clear;
+        {
+            _text.color = Color.Lerp(Color.clear, Color.white, .6f);
+            _text.transform.localScale = Vector3.one * .85f;
+        }
     }
 
     private void Update()
@@ -128,7 +132,7 @@ public class ChipMoney : MonoBehaviour
             chip.transform.eulerAngles = Random.insideUnitSphere * 360;
             chip.GetComponent<Rigidbody>().isKinematic = false;
             chip.GetComponent<Collider>().enabled = true;
-            yield return new WaitForSeconds(.1f);
+            yield return new WaitForSeconds(.02f);
         }
     }
 

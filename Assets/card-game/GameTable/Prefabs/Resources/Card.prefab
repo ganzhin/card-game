@@ -1102,7 +1102,7 @@ TextMesh:
   m_Font: {fileID: 12800000, guid: 46eb12762a5b71d40b11616bddbe31c4, type: 3}
   m_Color:
     serializedVersion: 2
-    rgba: 4279176975
+    rgba: 4278190080
 --- !u!1 &8528606837588955986
 GameObject:
   m_ObjectHideFlags: 0
@@ -1199,7 +1199,7 @@ TextMesh:
   m_Font: {fileID: 12800000, guid: 46eb12762a5b71d40b11616bddbe31c4, type: 3}
   m_Color:
     serializedVersion: 2
-    rgba: 4279176975
+    rgba: 4278190080
 --- !u!1 &9184480585146588541
 GameObject:
   m_ObjectHideFlags: 0
